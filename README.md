@@ -2,7 +2,7 @@
 
 **Auteur(s) :** Ninon AUTEFAGE & Yige YANG 
 
----
+
 
 ## Rappel du projet
 
@@ -16,7 +16,7 @@ Jeu navigateur type endless scroll limité à 20 secondes. Le joueur doit ramass
 - Ennemis : font perdre immédiatement la partie.  
 - Mode 2 joueurs : compétitif, chacun sur son écran (hôte / invité), le but est de faire le plus de points.
 
----
+
 
 ## Lancement du jeu
 
@@ -42,7 +42,7 @@ Jeu navigateur type endless scroll limité à 20 secondes. Le joueur doit ramass
 
 *Il faut parfois entrer le code une fois puis reload la page de l'invité puis remettre le code pour que les appels à l'hôte se fassent.*
 
----
+
 
 ## Architecture du jeu
 
@@ -51,7 +51,7 @@ Jeu navigateur type endless scroll limité à 20 secondes. Le joueur doit ramass
 - **Joiner** : Joueur 2  
 - **Whiteboard** : Gère les affichages communs (comporte quelques bugs)
 
----
+
 
 ## Fonctionnement du jeu
 
@@ -68,7 +68,7 @@ Jeu navigateur type endless scroll limité à 20 secondes. Le joueur doit ramass
 - *Flèche haut* : Saut (double saut autorisé)  
 - *Flèche bas* : Descente rapide
 
----
+
 
 ## Remarques
 
