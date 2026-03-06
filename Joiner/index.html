@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Paws of Fury: Rainy City</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.7; }
+        50% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(1); opacity: 0.7; }
+    }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="1100" height="600"></canvas>
+
+    <div id="hud" class="hidden">
+        <div style="color:#00f260">PLAYER: <span id="ui-name"></span></div>
+        <div style="color:#f1c40f">SCORE: <span id="ui-score">0</span></div>
+        <div style="color:#ff4757">TIME: <span id="ui-time">60</span></div>
+    </div>
+
+
+    <div id="screen-join" class="ui-layer hidden">
+        <h2>JOIN GAME</h2>
+        <input type="text" id="roomCodeInput" placeholder="ENTER CODE (e.g. C0A80105)"
+            style="text-transform:uppercase; text-align:center;">
+        <div id="code-error" style="color:#ff4757; font-size:12px; margin-top:5px; display:none;">Non valid IP</div>
+        <div id="join-status-text" style="font-size:14px; color:#aaa; margin-bottom:10px;">Ask the host for the code
+        </div>
+        <button id="btn-connect" onclick="joinWithCode()">CONNECT</button>
+        <button class="btn-back" onclick="backToMultiMenu()">BACK</button>
+    </div>
+
+    <div id="screen-wait" class="ui-layer">
+        <h2>ROOM CODE: <span id="room-code-display">-----</span></h2>
+        <div style="text-align:center; margin-top: 100px; font-size: 20px; color: #aaa;">
+            <div style="font-size: 50px; margin-bottom: 20px; animation: pulse 1.2s infinite;">⏳</div>
+            Waiting for host to start the game...
+        </div>
+
+        <div style="text-align:center; margin-top: 50px;">
+            <button class="btn-back" onclick="backToMode()">LEAVE ROOM</button>
+        </div>
+    </div>
+
+
+        <div id="screen-end" class="ui-layer hidden">
+            <h1 id="end-title">GAME OVER</h1>
+            <div id="end-char" style="font-size:100px; margin:20px;">☠️</div>
+            <div style="font-size:30px;">SCORE: <span id="end-score">0</span></div>
+            <div id="end-rank" style="color:#f1c40f; margin-top:10px;">Rank: Stray</div>
+            <div id="wait-end-msg">Waiting for host to retry...</div>
+        </div>
+
+        <div id="tut-hint" class="tutorial-text hidden">SPACE: ATTACK | UP: JUMP | DOWN: FAST DROP</div>
+    </div>
+
+    <script>
+        // --- GLOBAL VARIABLES ---
+        let params = new URLSearchParams(document.location.search);
+
+        let codeRoom = "";
+
+        let state = params.get('state') == null ? 'JOIN' : params.get('state');
+        let gameMode = params.get('mode') == null ? 'multi' : params.get('mode');
+        let pName = params.get('name') == null ? 'Player2' : params.get('name');
+        let charType = 'dog';
+        let levelSelected = 'Urban Escape';
+        let createdGroupURL = '';
+
+        let hostFinished = false;
+
+        window.addEventListener('load', () => {
+            preloadList.forEach(src => {
+                const img = new Image();
+                img.src = src;
+                images.push(img);
+            });
+
+            if (state === 'JOIN') toJoin();
+        });
+
+        // --- SETUP ---
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const W = 1100, H = 600;
+        const GROUND_Y = 500;
+
+
+        // --- INPUT HANDLING ---
+        const keys = {};
+        window.addEventListener('keydown', e => {
+            // Prevent scrolling
+            if (['Space', 'ArrowUp', 'ArrowDown'].includes(e.code)) e.preventDefault();
+
+            keys[e.code] = true;
+
+            if (state === 'PLAYING') {
+                // Jump / Double Jump
+                if (e.code === 'ArrowUp') {
+                    if (p.grounded) {
+                        p.vy = -18;
+                        p.grounded = false;
+                        p.jumpCount = 1;
+                    } else if (p.jumpCount < 2) {
+                        p.vy = -15; // Double jump
+                        p.jumpCount++;
+                    }
+                }
+                // Attack
+                if (e.code === 'Space') {
+                    performAttack();
+                }
+            }
+        });
+        window.addEventListener('keyup', e => keys[e.code] = false);
+
+
+        // --- NAVIGATION FUNCTIONS ---  
+        function showScreen(id) {
+            document.querySelectorAll('.ui-layer').forEach(el => {
+                if (el.id !== 'loading-screen') el.classList.add('hidden');
+            });
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function backToMode() {
+            let url = "../index.html?" + new URLSearchParams({ state: 'MODE', name: pName }).toString();
+            window.location.href = url;
+        }
+
+        function toJoin() {
+            state = 'JOIN';
+            isHost = false;
+            document.getElementById('join-status-text').innerText = "Ask the host for the code";
+            document.getElementById('btn-connect').disabled = false;
+            document.getElementById('btn-connect').innerText = "CONNECT";
+            showScreen('screen-join');
+        }
+
+
+        // --- JOINER FLOW ---
+        function joinWithCode() {
+            const codeInput = document.getElementById('roomCodeInput');
+            const statusText = document.getElementById('join-status-text');
+            const btn = document.getElementById('btn-connect');
+
+            const code = codeInput.value.trim().toUpperCase();
+
+            const error = document.getElementById('code-error');
+            error.style.display = "none";
+
+            if (!isValidCode(code)) {
+                input.value = "";
+                error.style.display = "block";
+                return;
+            }
+
+            const ip = hexToIp(code);
+
+            const url = "ws://" + ip + ":8080";
+            console.log("Connecting to: " + url);
+
+            // UI Feedback
+            btn.innerText = "CONNECTING...";
+            btn.disabled = true;
+
+            setServerURL(url);
+            IGS.start();
+
+            codeRoom = code;
+            document.getElementById('room-code-display').textContent = code;
+
+        }
+
+        function handleConnection(status) {
+            const statusText = document.getElementById('join-status-text');
+            const btn = document.getElementById('btn-connect');
+
+            if (status) {
+                // Connexion OK → Waiting Room
+                state = 'WAITING';
+                showScreen('screen-wait');
+                setIs_ConnectedOutput();
+            } else {
+                // Connexion échouée
+                statusText.innerText = "Connection failed";
+                statusText.style.color = "#ff4757";
+
+                btn.innerText = "RETRY";
+                btn.disabled = false;
+            }
+        }
+
+        function setHostName(name) {
+            console.log("Host name " + name);
+            document.getElementById('host-name').textContent = name;
+        }
+
+        function updateCharacters(hostChar) {
+            const joinerChar = hostChar === 'cat' ? 'dog' : 'cat';
+            console.log("Now host char is" + hostChar);
+
+            const hostAvatar = document.getElementById('host-avatar');
+            if (hostAvatar) {
+                hostAvatar.innerHTML =
+                    hostChar === 'cat'
+                        ? '<img src="photo/cat1.png" class="char-img" alt="Cat">'
+                        : '<img src="photo/dog1.png" class="char-img" alt="Dog">';
+            }
+
+            const joinerAvatar = document.getElementById('joiner-avatar');
+            if (joinerAvatar) {
+                joinerAvatar.innerHTML =
+                    joinerChar === 'cat'
+                        ? '<img src="photo/cat1.png" class="char-img" alt="Cat">'
+                        : '<img src="photo/dog1.png" class="char-img" alt="Dog">';
+            }
+
+            charType = joinerChar;
+        }
+
+        function isValidCode(code) {
+            const hexRegex = /^[0-9A-F]{8}$/;
+            return hexRegex.test(code);
+        }
+
+        function hexToIp(hex) {
+            if (hex.length !== 8) return null;
+            const parts = [];
+            for (let i = 0; i < 8; i += 2) {
+                parts.push(parseInt(hex.substr(i, 2), 16));
+            }
+            return parts.join('.');
+        }
+
+
+        // --- GAME LOGIC ---
+        // Game State 
+        let score = 0;
+        let treat = 0;
+        let time = 20;
+        let frame = 0;
+        let speed = 6;
+
+
+        // Player
+        let p = {
+            x: 100, y: GROUND_Y,
+            vy: 0,
+            w: 60, h: 60,
+            grounded: true,
+            jumpCount: 0, // Enable Double Jump
+            attacking: false,
+            attackTimer: 0
+        };
+
+        let objs = []; // Enemies, food, poison
+        let rains = []; // Rain particles
+        let buildings = []; // Background buildings
+
+        function gameStart() {
+            hostFinished = false;
+
+            state = 'PLAYING';
+            document.querySelectorAll('.ui-layer').forEach(e => e.classList.add('hidden'));
+            document.getElementById('hud').classList.remove('hidden');
+            document.getElementById('tut-hint').classList.remove('hidden');
+
+            initAssets();
+
+            // Timer
+            let timer = setInterval(() => {
+                if (state !== 'PLAYING') { clearInterval(timer); return; }
+                time--;
+                speed += 0.05; // Gets faster
+                if (time <= 0) gameOver(true);
+            }, 1000);
+
+            loop();
+        }
+
+        function performAttack() {
+            p.attacking = true;
+            p.attackTimer = 15; // Attack lasts 15 frames
+
+            // Check hit immediately
+            for (let i = objs.length - 1; i >= 0; i--) {
+                let o = objs[i];
+                // Attack range is large: 150px in front
+                if (o.type === 'enemy' && o.x > p.x - 50 && o.x < p.x + 200) {
+                    // Hit!
+                    objs.splice(i, 1);
+                    score += 50;
+                }
+            }
+        }
+
+        function spawnObject(type) {
+            console.log("generating " + type)
+            let lastX = objs.length > 0 ? objs[objs.length - 1].x : 0;
+            if (1100 - lastX < 400) return;
+
+            let y = GROUND_Y;
+            let image = null;
+
+            if (type === 'enemy') {
+                y = GROUND_Y;
+            } else if (type === 'poison') {
+                image = new Image();
+                image.src = 'photo/trash.png'; // Poison
+                y = GROUND_Y + 10;
+            } else {
+                // Food
+                image = new Image();
+                image.src = charType === 'cat' ? "photo/fish.png" : "photo/bone.png";
+                y = GROUND_Y + 10;
+            }
+
+            objs.push({ x: 1200, y: y, type: type, image: image, w: 50, h: 50 });
+        }
+
+        function loop() {
+            if (state !== 'PLAYING') return;
+            frame++;
+
+            // 1. Physics
+            // Left/Right
+            if (keys['ArrowLeft'] && p.x > 20) p.x -= 6;
+            if (keys['ArrowRight'] && p.x < 500) p.x += 6;
+
+            // Down (Fast Fall)
+            if (keys['ArrowDown']) p.vy += 2;
+
+            // Gravity
+            p.y += p.vy;
+            if (p.y < GROUND_Y) {
+                p.vy += 0.9;
+            } else {
+                p.y = GROUND_Y;
+                p.vy = 0;
+                p.grounded = true;
+                p.jumpCount = 0;
+            }
+
+            // Attack cooldown
+            if (p.attacking) {
+                p.attackTimer--;
+                if (p.attackTimer <= 0) p.attacking = false;
+            }
+
+            for (let i = objs.length - 1; i >= 0; i--) {
+                let o = objs[i];
+                let moveS = speed;
+                if (o.type === 'enemy') moveS = speed + 3; // Enemy runs faster
+
+                o.x -= moveS;
+
+                // Collision
+                // Simple hitbox
+                if (p.x < o.x + o.w && p.x + p.w > o.x && p.y - 40 < o.y + o.h && p.y > o.y - 60) {
+                    if (o.type === 'food') {
+                        score += 10;
+                        treat++;
+                        setChatOutput(pName + " got a snack!");
+
+                        objs.splice(i, 1);
+
+                    } else if (o.type === 'poison') {
+                        score -= 10;
+                        treat--;
+                        setChatOutput(pName + " dashed into garbage...");
+
+                        objs.splice(i, 1);
+
+                    } else if (o.type === 'enemy') {
+                        if (!p.attacking) {
+                                setChatOutput(pName + " got caught... GAME OVER");
+                                gameOver(false, "Caught by the Bad Guy🦹🏻🕸️!");
+                            }
+                            else{
+                                setChatOutput(pName + " narrowly escaped the pound !");
+                            }
+                    }
+                }
+                if (o.x < -100) objs.splice(i, 1);
+            }
+
+            // 3. UI Updates
+            document.getElementById('ui-score').innerText = score;
+            document.getElementById('ui-time').innerText = time;
+            document.getElementById('ui-name').innerText = pName;
+
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        function initAssets() {
+            if (levelSelected === 'Urban Escape') {
+                // City: rain + buildings
+                rains = [];
+                for (let i = 0; i < 150; i++) {
+                    rains.push({
+                        x: Math.random() * W,
+                        y: Math.random() * H,
+                        l: Math.random() * 20 + 10,
+                        v: Math.random() * 5 + 15
+                    });
+                }
+
+                buildings = [];
+                let bx = 0;
+                while (bx < W * 2) {
+                    let bw = 80 + Math.random() * 100;
+                    let bh = 150 + Math.random() * 300;
+                    let wins = [];
+                    for (let wy = 10; wy < bh - 10; wy += 40) {
+                        for (let wx = 10; wx < bw - 20; wx += 30) {
+                            if (Math.random() > 0.4) wins.push({ x: wx, y: wy });
+                        }
+                    }
+                    buildings.push({ x: bx, w: bw, h: bh, wins });
+                    bx += bw + 10;
+                }
+            } else {
+                // Country: no rain/buildings
+                rains = [];
+                buildings = [];
+            }
+        }
+
+
+
+        // --- VISUALS  ---
+        // -- Assets --
+        const preloadList = [
+            'photo/dog1.png', 'photo/dog2.png', 'photo/dog3.png',
+            'photo/cat1.png', 'photo/cat2.png', 'photo/cat3.png',
+            'photo/badguy1.png', 'photo/badguy2.png', 'photo/badguy3.png', 'photo/badguy4.png',
+            'photo/fish.png', 'photo/bone.png', 'photo/trash.png'
+        ];
+
+        const images = [];
+
+        //Dog Frames 
+        const dogFrames = [];
+        for (let i = 1; i <= 3; i++) {
+            let img = new Image();
+            img.src = 'photo/dog' + i + '.png';
+            dogFrames.push(img);
+        }
+        //Cat Frame
+        const catFrames = [];
+        for (let i = 1; i <= 3; i++) {
+            let img = new Image();
+            img.src = 'photo/cat' + i + '.png';;
+            catFrames.push(img);
+        }
+        //BadGuy Frame
+        const badguyFrames = [];
+        for (let i = 1; i <= 4; i++) {
+            let img = new Image();
+            img.src = 'photo/badguy' + i + '.png';;
+            badguyFrames.push(img);
+        }
+
+        function drawCountryBackground() {
+            let sky = ctx.createLinearGradient(0, 0, 0, H);
+            sky.addColorStop(0.00, '#2b1d49'); // deep purple
+            sky.addColorStop(0.35, '#ff7a3d'); // orange
+            sky.addColorStop(0.60, '#ffc66b'); // warm light
+            sky.addColorStop(1.00, '#3a7a3a'); // green near horizon
+            ctx.fillStyle = sky;
+            ctx.fillRect(0, 0, W, H);
+
+            //Sun glow
+            const sunX = W * 0.75;
+            const sunY = H * 0.30;
+            let sun = ctx.createRadialGradient(sunX, sunY, 10, sunX, sunY, 220);
+            sun.addColorStop(0.00, 'rgba(255, 230, 150, 0.9)');
+            sun.addColorStop(0.35, 'rgba(255, 180, 90, 0.35)');
+            sun.addColorStop(1.00, 'rgba(255, 120, 60, 0)');
+            ctx.fillStyle = sun;
+            ctx.fillRect(0, 0, W, H);
+
+            //  Distant hills 
+            // back hill
+            const hillBackY = GROUND_Y - 150;
+            ctx.fillStyle = 'rgba(20, 35, 25, 0.85)';
+            ctx.beginPath();
+            ctx.moveTo(0, hillBackY);
+            for (let x = 0; x <= W + 80; x += 80) {
+                const y = hillBackY - 40 + Math.sin((x + frame * 0.6) / 180) * 18;
+                ctx.quadraticCurveTo(x + 40, y, x + 80, hillBackY);
+            }
+            ctx.lineTo(W, H);
+            ctx.lineTo(0, H);
+            ctx.closePath();
+            ctx.fill();
+
+            // front hill
+            const hillFrontY = GROUND_Y - 90;
+            ctx.fillStyle = 'rgba(10, 25, 15, 0.90)';
+            ctx.beginPath();
+            ctx.moveTo(0, hillFrontY);
+            for (let x = 0; x <= W + 60; x += 60) {
+                const y = hillFrontY - 22 + Math.sin((x + frame * 0.9) / 140) * 12;
+                ctx.quadraticCurveTo(x + 30, y, x + 60, hillFrontY);
+            }
+            ctx.lineTo(W, H);
+            ctx.lineTo(0, H);
+            ctx.closePath();
+            ctx.fill();
+
+
+            ctx.fillStyle = '#2f6b2f';
+            ctx.fillRect(0, GROUND_Y + 40, W, 140);
+
+            // wheat rows (diagonal stripes)
+            ctx.save();
+            ctx.globalAlpha = 0.22;
+            ctx.strokeStyle = '#f7d56b';
+            ctx.lineWidth = 3;
+
+            const stripeOffset = (frame * speed) % 60;
+            for (let i = -H; i < W + H; i += 26) {
+                ctx.beginPath();
+                ctx.moveTo(i - stripeOffset, GROUND_Y + 45);
+                ctx.lineTo(i + 220 - stripeOffset, H);
+                ctx.stroke();
+            }
+            ctx.restore();
+
+            //  Dirt road 
+            ctx.fillStyle = '#6b4a2a';
+            ctx.beginPath();
+            ctx.moveTo(W * 0.46, GROUND_Y + 40);
+            ctx.lineTo(W * 0.54, GROUND_Y + 40);
+            ctx.lineTo(W * 0.68, H);
+            ctx.lineTo(W * 0.32, H);
+            ctx.closePath();
+            ctx.fill();
+
+            // road highlight
+            ctx.save();
+            ctx.globalAlpha = 0.20;
+            ctx.fillStyle = '#b58b5a';
+            ctx.beginPath();
+            ctx.moveTo(W * 0.495, GROUND_Y + 40);
+            ctx.lineTo(W * 0.505, GROUND_Y + 40);
+            ctx.lineTo(W * 0.56, H);
+            ctx.lineTo(W * 0.44, H);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+
+            //Fence (scrolling) 
+            const fenceY = GROUND_Y + 18;
+            ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+            ctx.lineWidth = 2;
+
+            const fenceShift = (frame * speed * 0.6) % 40;
+            for (let x = -fenceShift; x < W; x += 40) {
+                // post
+                ctx.beginPath();
+                ctx.moveTo(x, fenceY);
+                ctx.lineTo(x, fenceY + 30);
+                ctx.stroke();
+
+                // rail
+                ctx.beginPath();
+                ctx.moveTo(x, fenceY + 15);
+                ctx.lineTo(x + 40, fenceY + 15);
+                ctx.stroke();
+            }
+
+            // Warm vignette
+            let vig = ctx.createRadialGradient(W / 2, H / 2, 260, W / 2, H / 2, 920);
+            vig.addColorStop(0, "rgba(0,0,0,0)");
+            vig.addColorStop(1, "rgba(0,0,0,0.35)");
+            ctx.fillStyle = vig;
+            ctx.fillRect(0, 0, W, H);
+        }
+
+        function draw() {
+            // Clear
+            ctx.clearRect(0, 0, W, H);
+            if (levelSelected === 'Rural Escape') {
+                drawCountryBackground();
+            } else {
+                // 1. Sky Gradient
+                let grad = ctx.createLinearGradient(0, 0, 0, H);
+                grad.addColorStop(0, '#020024');
+                grad.addColorStop(1, '#090979');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, W, H);
+
+                // 2. Parallax Buildings
+                ctx.fillStyle = '#111';
+                buildings.forEach(b => {
+                    b.x -= speed * 0.5;
+                    if (b.x + b.w < 0) b.x += buildings.length * 100 + 300;
+                    ctx.fillRect(b.x, GROUND_Y - b.h + 50, b.w, b.h);
+                    ctx.fillStyle = '#feca57';
+                    b.wins.forEach(w => {
+                        if (Math.random() > 0.05) ctx.fillRect(b.x + w.x, GROUND_Y - b.h + 50 + w.y, 10, 15);
+                    });
+                    ctx.fillStyle = '#111';
+                });
+
+                // 3. Ground & Road
+                ctx.fillStyle = '#222';
+                ctx.fillRect(0, GROUND_Y + 50, W, 100);
+                ctx.strokeStyle = '#555';
+                ctx.lineWidth = 5;
+                ctx.setLineDash([50, 50]);
+                ctx.lineDashOffset = -frame * speed;
+                ctx.beginPath(); ctx.moveTo(0, GROUND_Y + 60); ctx.lineTo(W, GROUND_Y + 60); ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            // 4. Objects
+            ctx.font = "50px Arial";
+            objs.forEach(o => {
+                if (o.type === 'enemy') {
+                    if (badguyFrames.length > 0) {
+                        let enemyFrameIndex = Math.floor(frame / 6) % badguyFrames.length;
+                        let currentEnemyImg = badguyFrames[enemyFrameIndex];
+
+                        if (currentEnemyImg && currentEnemyImg.complete && currentEnemyImg.naturalWidth > 0) {
+                            ctx.drawImage(currentEnemyImg, o.x, o.y - 80, 160, 160);
+                        }
+                    }
+                } else {
+                    // food/poison
+                    if (o.image && o.image.complete && o.image.naturalWidth > 0) {
+                        ctx.drawImage(o.image, o.x, o.y - 10, 50, 50);
+                    }
+                }
+            });
+
+            // 5.Player 
+            ctx.save();
+            let framesToUse = charType === 'dog' ? dogFrames : catFrames;
+            if (framesToUse.length > 0) {
+                let frameIndex = Math.floor(frame / 6) % framesToUse.length;
+                if (!p.grounded) frameIndex = 1;
+
+                let currentImg = framesToUse[frameIndex];
+
+                if (currentImg && currentImg.complete && currentImg.naturalWidth > 0) {
+                    if (charType === 'cat') {
+                        ctx.drawImage(currentImg, p.x, p.y - 10, 80, 80);
+                    } else {
+                        ctx.drawImage(currentImg, p.x, p.y - 10, 80, 80);
+                    }
+                } else {
+                    // emoji
+                    ctx.font = "60px Arial";
+                    ctx.fillText(charType === 'dog' ? '🐕' : '🐈', p.x, p.y + 50);
+                }
+            }
+
+
+            //attack
+            if (p.attacking) {
+                ctx.font = "60px Arial";
+                ctx.fillText('💥', p.x + 40, p.y + 40);
+            }
+
+            ctx.restore();
+
+
+            // 6. Rain
+            ctx.strokeStyle = 'rgba(100, 150, 255, 0.4)';
+            ctx.lineWidth = 2;
+            rains.forEach(r => {
+                r.y += r.v;
+                r.x -= 2;
+                if (r.y > H) { r.y = -20; r.x = Math.random() * W; }
+                ctx.beginPath(); ctx.moveTo(r.x, r.y); ctx.lineTo(r.x - 2, r.y + r.l); ctx.stroke();
+            });
+
+            // 7. Vignette
+            let radGrad = ctx.createRadialGradient(W / 2, H / 2, 300, W / 2, H / 2, 800);
+            radGrad.addColorStop(0, "rgba(0,0,0,0)");
+            radGrad.addColorStop(1, "rgba(0,0,0,0.6)");
+            ctx.fillStyle = radGrad;
+            ctx.fillRect(0, 0, W, H);
+        }
+
+        function gameOver(win, reason) {
+            setHas_FinishedOutput();
+            state = 'END';
+            document.getElementById('hud').classList.add('hidden');
+            document.getElementById('screen-end').classList.remove('hidden');
+            document.getElementById('tut-hint').classList.add('hidden');
+
+            const title = document.getElementById('end-title');
+            const rank = document.getElementById('end-rank');
+            const charDiv = document.getElementById('end-char');
+
+            document.getElementById('end-score').innerText = score;
+
+            if (win) {
+                setChatOutput(pName + " got away ! VICTORY");
+                resultTreats();
+                title.innerText = "ESCAPED!";
+                title.style.color = "#00f260";
+
+                // win star
+                if (score >= 80) {
+                    const imgUrl = (charType === 'cat') ? 'photo/cat_win_star.png' : 'photo/dog_win_star.png';
+                    charDiv.innerHTML = `<img src="${imgUrl}" style="width:130px; height:130px; object-fit:contain; filter: drop-shadow(0 0 20px #ffd700) brightness(1.2);">`;
+
+                    rank.innerText = "Rank: SUPER LEGEND";
+                    rank.style.color = "#ffd700";
+                    rank.style.textShadow = "0 0 15px rgba(255, 215, 0, 0.8)";
+                } else {
+                    // win normal
+                    const imgUrl = (charType === 'cat') ? 'photo/cat_win.png' : 'photo/dog_win.png';
+                    charDiv.innerHTML = `<img src="${imgUrl}" style="width:100px; height:100px; object-fit:contain;">`;
+                    rank.innerText = "Rank: LEGEND";
+                    rank.style.color = "#00ffff";
+                    rank.style.textShadow = "none";
+                }
+            } else {
+                if (!hostFinished) document.getElementById('wait-end-msg').textContent = "Your friend is still running !";
+
+                title.innerText = "CAUGHT";
+                title.style.color = "#ff4757";
+                const imgUrl = (charType === 'cat') ? 'photo/cat_prison.png' : 'photo/dog_prison.png';
+                charDiv.innerHTML = `<img src="${imgUrl}" style="width:100px; height:100px; object-fit:contain;">`;
+                rank.innerText = "Rank: " + reason;
+            }
+        }
+
+        function handleHostFinished(){
+            if (state === 'PLAYING') return;
+            document.getElementById('wait-end-msg').textContent = "Waiting for host to retry...";
+            resultTreats();
+        }
+
+        function resultTreats(){
+            setTotal_TreatOutput(total_treat)
+            let recolted = 300-(treat/total_treat)*300;
+            setTreat_RecoltedOutput(recolted);
+            setTreat_TextOutput(treat);
+            setScore_TextOutput(score);
+        }
+
+
+    </script>
+    <script src="js/ingescape.js" charset="utf-8"></script>
+    <script src="js/index.js" charset="utf-8"></script>
+</body>
+
+</html>

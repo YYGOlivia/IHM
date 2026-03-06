@@ -1,0 +1,2186 @@
+{
+    "extensions": {
+        "eventsTimeline": {
+            "events": [
+            ],
+            "patterns": [
+            ],
+            "timelines": [
+                {
+                    "eventInstances": [
+                    ],
+                    "name": "Timeline_1",
+                    "order": 0,
+                    "patternInstances": [
+                    ]
+                }
+            ]
+        }
+    },
+    "library": {
+        "classes": [
+            {
+                "className": "Host",
+                "color": 0,
+                "definition": {
+                    "inputs": [
+                        {
+                            "name": "joiner_connected",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "joiner_finished",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "game_mode",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "player_name",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "character",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "level_selected",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "start",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "has_finished",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "spawn_treat",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "spawn_poison",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "spawn_enemi",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "score_text",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "treat_text",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "chat",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "treat_recolted",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "total_treat",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "reset",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "services": [
+                        {
+                            "name": "getHostName",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "host_name",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "getHostNameResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "joiner_name",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "getJoinerNameResult"
+                        }
+                    ]
+                },
+                "description": "",
+                "icon": -1,
+                "package": "",
+                "plugin": "ingescape_class",
+                "uuid": "7e2da185-c7f1-4cfd-bc26-246c93d6a29f",
+                "version": ""
+            },
+            {
+                "className": "Whiteboard",
+                "color": 0,
+                "definition": {
+                    "inputs": [
+                        {
+                            "name": "title",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "backgroundColor",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "labelsVisible",
+                            "type": "BOOL"
+                        },
+                        {
+                            "name": "chatMessage",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "clear",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "ui_command",
+                            "type": "STRING"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "windowWidth",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "windowHeight",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "whiteboardWidth",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "whiteboardHeight",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "lastChatMessage",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "lastAction",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "ui_error",
+                            "type": "STRING"
+                        }
+                    ],
+                    "services": [
+                        {
+                            "arguments": [
+                                {
+                                    "name": "title",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "setTitle"
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "color",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "setBackgroundColor"
+                        },
+                        {
+                            "name": "getWindowSize",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "width",
+                                            "type": "INTEGER"
+                                        },
+                                        {
+                                            "name": "height",
+                                            "type": "INTEGER"
+                                        }
+                                    ],
+                                    "name": "getWindowSizeResult"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "getWhiteboardSize",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "width",
+                                            "type": "INTEGER"
+                                        },
+                                        {
+                                            "name": "height",
+                                            "type": "INTEGER"
+                                        }
+                                    ],
+                                    "name": "getWhiteboardSizeResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "message",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "chat"
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "name",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "message",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "chatAs"
+                        },
+                        {
+                            "name": "snapshot",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "base64Png",
+                                            "type": "DATA"
+                                        }
+                                    ],
+                                    "name": "snapshotResult"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "clear"
+                        },
+                        {
+                            "name": "showLabels"
+                        },
+                        {
+                            "name": "hideLabels"
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "type",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "x",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "y",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "width",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "height",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "fill",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "stroke",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "strokeWidth",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "addShape",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "elementId",
+                                            "type": "INTEGER"
+                                        }
+                                    ],
+                                    "name": "elementCreated"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "text",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "x",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "y",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "color",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "addText",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "elementId",
+                                            "type": "INTEGER"
+                                        }
+                                    ],
+                                    "name": "elementCreated"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "base64",
+                                    "type": "DATA"
+                                },
+                                {
+                                    "name": "x",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "y",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "width",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "height",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "addImage",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "elementId",
+                                            "type": "INTEGER"
+                                        }
+                                    ],
+                                    "name": "elementCreated"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "url",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "x",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "y",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "addImageFromUrl",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "elementId",
+                                            "type": "INTEGER"
+                                        }
+                                    ],
+                                    "name": "elementCreated"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                }
+                            ],
+                            "name": "remove",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "dx",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "dy",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "translate",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "x",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "y",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "moveTo",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "property",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "setStringProperty",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "property",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "setDoubleProperty",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "getElementIds",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "jsonArray",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "elementIds"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "getElements",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "jsonArray",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "elements"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "description": "",
+                "icon": -1,
+                "package": "",
+                "plugin": "ingescape_class",
+                "uuid": "f32c7dc4-2685-435c-82b5-34f935c04817",
+                "version": ""
+            },
+            {
+                "className": "Joiner",
+                "color": 0,
+                "definition": {
+                    "inputs": [
+                        {
+                            "name": "host_character",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "level_selected",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "start",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "host_finished",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "total_treat",
+                            "type": "INTEGER"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "is_connected",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "has_finished",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "player_name",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "character",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "score_text",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "treat_text",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "chat",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "treat_recolted",
+                            "type": "INTEGER"
+                        }
+                    ],
+                    "services": [
+                        {
+                            "name": "spawnEnemi"
+                        },
+                        {
+                            "name": "spawnPoison"
+                        },
+                        {
+                            "name": "spawnTreat"
+                        },
+                        {
+                            "name": "getJoinerName",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "joiner_name",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "getJoinerNameResult"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "description": "",
+                "icon": -1,
+                "package": "",
+                "plugin": "ingescape_class",
+                "uuid": "534d5cfd-b930-46a7-9af0-ca8970a26e24",
+                "version": ""
+            },
+            {
+                "className": "blabla",
+                "color": 0,
+                "definition": {
+                    "services": [
+                        {
+                            "arguments": [
+                                {
+                                    "name": "arg",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "service"
+                        }
+                    ]
+                },
+                "description": "",
+                "icon": -1,
+                "package": "",
+                "plugin": "ingescape_class",
+                "uuid": "1bf2e3d3-bb43-45d5-a5ea-a778c6db9246",
+                "version": ""
+            },
+            {
+                "className": "Test",
+                "color": 0,
+                "definition": {
+                    "inputs": [
+                        {
+                            "name": "remote_start_game",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "remote_level_selected",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "remote_player_join",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "level_selected",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "character",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "treat_number",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "score",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "treat_text",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "score_text",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "start",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "player_name",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "start_game_signal",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "player_join_signal",
+                            "type": "IMPULSION"
+                        }
+                    ]
+                },
+                "description": "",
+                "icon": -1,
+                "package": "",
+                "plugin": "ingescape_class",
+                "uuid": "383bc704-0e61-4d48-8a25-23efa21bf756",
+                "version": ""
+            },
+            {
+                "className": "CenterAgent",
+                "color": 0,
+                "definition": {
+                    "inputs": [
+                        {
+                            "name": "width",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "height",
+                            "type": "INTEGER"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "center_x",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "center_y",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "center_left",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "center_right",
+                            "type": "INTEGER"
+                        }
+                    ]
+                },
+                "description": "",
+                "icon": -1,
+                "package": "",
+                "plugin": "ingescape_class",
+                "uuid": "992fcfee-f2ed-4f55-a292-84dd5bb02d4e",
+                "version": ""
+            }
+        ]
+    },
+    "systemViews": [
+        {
+            "children": [
+                {
+                    "agent": {
+                        "instances": [
+                            {
+                                "commandLine": "\"C:\\Program Files\\Ingescape\\Ingescape Circle v4\\igsProxy.exe\" --port 5674 --name Proxy --device Wi-Fi --license C:/Users/Ninon/Documents/Ingescape/licenses --ws ws://localhost:8080",
+                                "isAttachedToCircle": true,
+                                "uuid": "06bae032-6176-4c35-8d9a-7571ebc9fa31"
+                            }
+                        ]
+                    },
+                    "class": "48879EBE0FBC48D8B429F11510954D9B",
+                    "height": 100,
+                    "name": "Proxy",
+                    "simulationTime": 5000,
+                    "uuid": "d924424b-bfc0-47b3-98dd-dc33204fec30",
+                    "width": 250,
+                    "x": -913.1470345043107,
+                    "y": 304.9475808028284,
+                    "z": 6.9399999999998965
+                },
+                {
+                    "agent": {
+                        "instances": [
+                            {
+                                "commandLine": "E:\\Desktop\\Whiteboard-win64\\Whiteboard-win64\\Whiteboard.exe",
+                                "hostname": "LAPTOP-8LB6JTGI",
+                                "ip": "172.20.10.2",
+                                "isAttachedToCircle": false,
+                                "uuid": "54de235c-fae4-449a-9471-e615c1e012d5"
+                            },
+                            {
+                                "commandLine": "C:\\Users\\Ninon\\Downloads\\Whiteboard-win64\\Whiteboard-win64\\Whiteboard.exe",
+                                "hostname": "LAPTOP-MVG6GKKU",
+                                "ip": "192.168.1.62",
+                                "isAttachedToCircle": false,
+                                "mac": "AC:D5:64:5B:38:5F",
+                                "uuid": "afb43fc8-72d6-4769-9055-5f2961d6bf41"
+                            }
+                        ]
+                    },
+                    "class": "f32c7dc4-2685-435c-82b5-34f935c04817",
+                    "height": 232,
+                    "name": "Whiteboard",
+                    "simulationTime": 5000,
+                    "uuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                    "width": 250,
+                    "x": -127.90622667501066,
+                    "y": -49.18106476073103,
+                    "z": 7.419999999999886
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "base64",
+                                "value": "89504e470d0a1a0a0000000d4948445200000200000002000806000000f478d4fa00001b4a494441547801eddd3f8aa4f7d505e06ad338555606ef403830681ba6033b3108a616212a9d489929147803861ed006066f63c0d1444e0dee2538507bfc27182911fa9dd67bdf33eff34532e8d4bdf5dcaad6f92a794f27ff4780000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102047e5ce0eec7ff15ffc6cf2cf01cbebe1b8680e204081038a2c02f8ef8a6bd67020408102070740105e0e89f00ef9f000102040e29a0001cf2ecde34010204081c5d400138fa27c0fb2740800081430a2800873cbb374d80000102471750008efe09f0fe09102040e090020ac021cfee4d13204080c0d1051480a37f02bc7f0204081038a4800270c8b37bd30408102070740105e0e89f00ef9f000102040e29a0001cf2ecde34010204081c5d400138fa27c0fb2740800081430a2800873cbb374d80000102471750008efe09f0fe09102040e090020ac021cfee4d13204080c0d1053c4b3eff043c272f71bd5e93f8e976bb45f90f619f8154509e00010285027e01283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402a709fbe803c01020408d40a3c879bdf8579f14101bf000ce21b4d8000010204a60414802979730910204080c0a0800230886f34010204081098125000a6e4cd25408000010283020ac020bed10408102040604a40019892379700010204080c0a280083f846132040800081290105604ade5c02040810203028a0000ce21b4d8000010204a60414802979730910204080c0a0800230886f34010204081098125000a6e4cd25408000010283020ac020bed10408102040604a40019892379700010204080c0a280083f8461320408000812981fba9c1e612204080402cf09cbcc2f57a4de2a7dbed16cdff30fc2e5a403812f00b40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a05ee3bd7feded6e9f3a8bff7623ff57fa4cfd3fea9f3fcfb04087c5202d1dfaff4efcf575f7c1161dea2b4f0b4805f00a62f603e01020408101810500006d08d244080000102d3020ac0f405cc27408000010203020ac000ba910408102040605a400198be80f90408102040604040011840379200010204084c0b2800d317309f00010204080c08280003e84612204080008169010560fa02e61320408000810101056000dd480204081020302da0004c5fc07c02040810203020a0000ca01b498000010204a6051480e90b984f8000010204060414800174230910204080c0b48002307d01f30910204080c080c0ddc0cc1f8e1c7d1ef60f97d9fa7fdf6ef113b5f770c3add9cc23b01781d1bf5f5f7df1c5a8c337efde45f3fdfd8bf8e2b05f0062422f408000010204fa041480be9bd9980001020408c4020a404ce8050810204080409f8002d077331b1320408000815840018809bd000102040810e8135000fa6e66630204081020100b280031a1172040800001027d020a40dfcd6c4c80000102046201052026f4020408102040a04f4001e8bb998d0910204080402ca000c4845e800001020408f40928007d37b33101020408108805148098d00b1020408000813e0105a0ef6636264080000102b1800210137a010204081020d027f012cf921f7d1e764afe02cfa34e5778891ba43bc81320b02650fdf76fed2def27f5027fbf0ffdf7d72f00fbf92cdb8400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c2670bfd9a49f6990e741ff4cb05e96c031049e93b779bd5e93f8e1b3af5f7f171a64fe1ffefb11ddffc3f277e11b188dfb056094df7002040810203023a000ccb89b4a800001020446051480517ec30910204080c08c800230e36e2a01020408101815500046f90d27408000010233020ac08cbba904081020406054400118e5379c0001020408cc08280033eea61220408000815101056094df7002040810203023a000ccb89b4a800001020446051480517ec30910204080c08c800230e36e2a01020408101815500046f90d27408000010233020ac08cbba904081020406054400118e5379c0001020408cc08dccf8c359500010204da055ebffe2e7a0b9f7df64d94bf5eaf51fe1fdf7e1be57ffde597cfd10b9c4e77613e8afb0520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d02f79d6bdb9a000102ff15889ec79e3e4ffee837f8faebecff879cf6ffe6ddbb439f30bbdea1e9bc790204081020d02ba000f4decee604081020406059400158a613244080000102bd020a40efed6c4e800001020496051480653a410204081020d02ba000f4decee604081020406059400158a613244080000102bd020a40efed6c4e800001020496051480653a410204081020d02ba000f4decee604081020406059400158a613244080000102bd020a40efed6c4e800001020496051480653a410204081020d02ba000f4decee604081020406059400158a613244080000102bd02f7bdabdb9c00811d083c4feef0bb5ffd2d1cff26cc8b27024f4f4f495c3614f00b4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a05ee5e60e9e879e097cb255ae17c3e47f9dbed16e53f845fc230dd41feb802d1f72f65bb5eafd14bbc7ff32aca4f873f7ff5667a85d1f94f4f4fd1fcc7c7c728bf8370f5df7fbf00ece01364050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b5c01e9e651c3dcffc72b94466e7f339cadf6eb7282f4c2011b85eaf49bc3efbfecdabeaf7f0f9ab37d5fbefe0efdf1efe1b567b43bf00d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6053e8567293fafbffdd3e9e8cf534fec6409b40bbc7ff3aafd2d44fbfff59fbf8df22f10fe14fe1bf4020c332fe117801977530910204080c0a8800230ca6f3801020408109811500066dc4d254080000102a3020ac028bfe10408102040604640019871379500010204088c0a2800a3fc8613204080008119010560c6dd540204081020302aa0008cf21b4e8000010204660414801977530910204080c0a8800230ca6f3801020408109811500066dc4d254080000102a3020ac028bfe10408102040604640019871379500010204088c0a2800a3fc8613204080008119010560c6dd540204081020302af0293c8bf93911bc5c2e49fc743e9fa3bc300102bd02efdfbc8a96ffd31fff10e5d3f06ffefcf7f4253e85ff86a406b579bf00d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d605eed7a39204081038b6c0e7afde6400ffcae2d2041201bf00247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a054e0be746f6b132040a05ee02fbffcfdf07bb80dcf377e52c02f0093fa661320408000812101056008de5802040810203029a0004cea9b4d8000010204860414802178630910204080c0a4800230a96f3601020408101812500086e08d25408000010293020ac0a4bed90408102040604840011882379600010204084c0a280093fa661320408000812101056008de5802040810203029a0004cea9b4d8000010204860414802178630910204080c0a4800230a96f3601020408101812500086e08d25408000010293020ac0a4bed904081020406048e07e68ee4b8ebd4b5eecf1f1f139c95f2e97247e3a9fcf515e984022f0f4f494c4c7b31fbebfd10ebebf119f70b9805f00ca0f687d0204081020b022a000aca8c9102040800081720105a0fc80d62740800001022b020ac08a9a0c010204081028175000ca0f687d0204081020b022a000aca8c9102040800081720105a0fc80d62740800001022b020ac08a9a0c010204081028175000ca0f687d0204081020b022a000aca8c9102040800081720105a0fc80d62740800001022b020ac08a9a0c010204081028175000ca0f687d0204081020b022a000aca8c9102040800081720105a0fc80d62740800001022b02772ba14f2cf33cf97e3c8f3cd36f7f9e7df6eef3f4e3e363fe22077e85a37f7f6fb75b7a7dff0d4a0583bc5f00023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02ae059cca7d373ebf1feb3b7e791c7cf236f3eff4bec7ef4bf01a3dffff6efefed167fff8efef97b89eff0f26bf80560994e900001020408f40a2800bdb7b33901020408105816500096e904091020408040af8002d07b3b9b13204080008165010560994e900001020408f40a2800bdb7b33901020408105816500096e904091020408040af8002d07b3b9b13204080008165010560994e900001020408f40a2800bdb7b33901020408105816500096e904091020408040af8002d07b3b9b13204080008165010560994e900001020408f40a2800bdb7b33901020408105816500096e904091020408040af8067319f4ed1f3c01f1e1ea2ebbf7dfb36ca7b9ef8c96738fa041d3eecfb3ff811b8dd6ee974dfff40d02f00019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e2801020408106815b86f5ddcdeff13787c7c8c282e974b943f9fcf515e984028f09ce41f1e1e92f878d6f77ffc04d50bf805a0fa7c962740800001026b020ac09a9b140102040810a8165000aacf67790204081020b026a000acb9491120408000816a0105a0fa7c962740800001026b020ac09a9b140102040810a8165000aacf67790204081020b026a000acb9491120408000816a0105a0fa7c962740800001026b020ac09a9b140102040810a8165000aacf67790204081020b026a000acb9491120408000816a0105a0fa7c962740800001026b020ac09a9b140102040810a8165000aacf67790204081020b02670b716db55aafa79e06fdfbe4d31d31b467e97cb25daff7c3e47f9dbed16e53f8453bf74fed1f3d1e7efe1e161d46f07dfdff4fd47febeff29ff6cde2f00b3fea61320408000811101056084dd500204081020302ba000ccfa9b4e8000010204460414801176430910204080c0ac800230eb6f3a01020408101811500046d80d254080000102b3020ac0acbfe9040810204060444001186137940001020408cc0a2800b3fea61320408000811101056084dd500204081020302ba000ccfa9b4e8000010204460414801176430910204080c0ac800230eb6f3a01020408101811500046d80d254080000102b3020ac0acbfe904081020406044600fcf428f9e47ed79e0239f9b8f8746f7f33cf18f292bff39babfef6fe5cd3f5e3ababfefffc794dbffb35f00b637379100010204088c0b2800e327b0000102040810d85e4001d8dedc440204081020302ea0008c9fc0020408102040607b0105607b73130910204080c0b88002307e020b102040800081ed051480edcd4d244080000102e3020ac0f8092c408000010204b6175000b637379100010204088c0b2800e327b0000102040810d85e4001d8dedc440204081020302ea0008c9fc0020408102040607b0105607b73130910204080c0b88002307e020b102040800081ed051480edcd4d244080000102e30277e31be40b44cfa3cec79f3e05c31760587e89e87ee9f3c497b7fe7ff0f1f1317d89a37f7ea2fba7f81ff247f77f01c2e825a2fbfbfe47f627bf00647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a052c0b3b02bcf66e98f04a2e7897ff43aabffe83bb42a27472017f0fd0f0cfd0210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e0891220408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081038bac0bf0127dacc3c43ffc1870000000049454e44ae426082"
+                            },
+                            {
+                                "name": "x",
+                                "value": "50"
+                            },
+                            {
+                                "name": "y",
+                                "value": "70"
+                            },
+                            {
+                                "name": "width",
+                                "value": "64"
+                            },
+                            {
+                                "name": "height",
+                                "value": "64"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addImage"
+                    },
+                    "height": 224,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "ca602c02-3316-4a30-b059-fd12b2a1a943",
+                    "width": 350,
+                    "x": 1442.664331776298,
+                    "y": -419.906841704013,
+                    "z": 6.959999999999896
+                },
+                {
+                    "data": {
+                        "UuidCurrentlyDisplayed": "{34a69fab-b5fe-4c9b-aa92-0663b30d4d03}",
+                        "autoOpening": true,
+                        "historyWidth": 72.93660181645294,
+                        "opened": false,
+                        "paused": false,
+                        "sources": [
+                            {
+                                "animated": false,
+                                "date": "Fri Jan 9 16:58:10 2026",
+                                "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAbSklEQVR4Ae3dP4qk99UF4GrTOFVWBu9AODBoG6YDOzEIphYhKp1ImSkUeAOGHtAGBm9jwNFETg3uJThQe/wnGCkR+p3We98z7/NFMujUvfXcqtb5KnlPJ/9HgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgR+XODux/8V/8bPLPAcvr4bhoDiBAgQOKLAL474pr1nAgQIECBwdAEF4OifAO+fAAECBA4poAAc8uzeNAECBAgcXUABOPonwPsnQIAAgUMKKACHPLs3TYAAAQJHF1AAjv4J8P4JECBA4JACCsAhz+5NEyBAgMDRBRSAo38CvH8CBAgQOKSAAnDIs3vTBAgQIHB0AQXg6J8A758AAQIEDimgABzy7N40AQIECBxdQAE4+ifA+ydAgACBQwooAIc8uzdNgAABAkcXUACO/gnw/gkQIEDgkAIKwCHP7k0TIECAwNEFPEs+/wQ8Jy9xvV6T+Ol2u0X5D2GfgVRQngABAoUCfgEoPJqVCRAgQIBAKqAApILyBAgQIECgUEABKDyalQkQIECAQCqgAKSC8gQIECBAoFBAASg8mpUJECBAgEAqoACkgvIECBAgQKBQQAEoPJqVCRAgQIBAKqAApILyBAgQIECgUEABKDyalQkQIECAQCqgAKSC8gQIECBAoFBAASg8mpUJECBAgEAqoACkgvIECBAgQKBQQAEoPJqVCRAgQIBAKqAApILyBAgQIECgUEABKDyalQkQIECAQCpwn76APAECBAjUCjyHm9+FefFBAb8ADOIbTYAAAQIEpgQUgCl5cwkQIECAwKCAAjCIbzQBAgQIEJgSUACm5M0lQIAAAQKDAgrAIL7RBAgQIEBgSkABmJI3lwABAgQIDAooAIP4RhMgQIAAgSkBBWBK3lwCBAgQIDAooAAM4htNgAABAgSmBBSAKXlzCRAgQIDAoIACMIhvNAECBAgQmBJQAKbkzSVAgAABAoMCCsAgvtEECBAgQGBKQAGYkjeXAAECBAgMCigAg/hGEyBAgACBKYH7qcHmEiBAgEAs8Jy8wvV6TeKn2+0Wzf8w/C5aQDgS8AtAxCdMgAABAgQ6BRSAzrvZmgABAgQIRAIKQMQnTIAAAQIEOgUUgM672ZoAAQIECEQCCkDEJ0yAAAECBDoFFIDOu9maAAECBAhEAgpAxCdMgAABAgQ6BRSAzrvZmgABAgQIRAIKQMQnTIAAAQIEOgUUgM672ZoAAQIECEQCCkDEJ0yAAAECBDoFFIDOu9maAAECBAhEAgpAxCdMgAABAgQ6BRSAzrvZmgABAgQIRAIKQMQnTIAAAQIEOgXuO9f+3tbp86i/92I/9X+kz9P+qfP8+wQIfFIC0d+v9O/PV198EWHeorTwtIBfAKYvYD4BAgQIEBgQUAAG0I0kQIAAAQLTAgrA9AXMJ0CAAAECAwIKwAC6kQQIECBAYFpAAZi+gPkECBAgQGBAQAEYQDeSAAECBAhMCygA0xcwnwABAgQIDAgoAAPoRhIgQIAAgWkBBWD6AuYTIECAAIEBAQVgAN1IAgQIECAwLaAATF/AfAIECBAgMCCgAAygG0mAAAECBKYFFIDpC5hPgAABAgQGBBSAAXQjCRAgQIDAtIACMH0B8wkQIECAwIDA3cDMH44cfR72D5fZ+n/fbvETtfdww63ZzCOwF4HRv19fffHFqMM3795F8/39i/jisF8AYkIvQIAAAQIE+gQUgL6b2ZgAAQIECMQCCkBM6AUIECBAgECfgALQdzMbEyBAgACBWEABiAm9AAECBAgQ6BNQAPpuZmMCBAgQIBALKAAxoRcgQIAAAQJ9AgpA381sTIAAAQIEYgEFICb0AgQIECBAoE9AAei7mY0JECBAgEAsoADEhF6AAAECBAj0CSgAfTezMQECBAgQiAUUgJjQCxAgQIAAgT4BBaDvZjYmQIAAAQKxgAIQE3oBAgQIECDQJ/ASz5IffR52Sv4Cz6NOV3iJG6Q7yBMgsCZQ/fdv7S3vJ/UCf78P/ffXLwD7+SzbhAABAgQIbCagAGxGbRABAgQIENiPgAKwn1vYhAABAgQIbCagAGxGbRABAgQIENiPgAKwn1vYhAABAgQIbCagAGxGbRABAgQIENiPgAKwn1vYhAABAgQIbCagAGxGbRABAgQIENiPgAKwn1vYhAABAgQIbCagAGxGbRABAgQIENiPgAKwn1vYhAABAgQIbCagAGxGbRABAgQIENiPgAKwn1vYhAABAgQIbCagAGxGbRABAgQIENiPgAKwn1vYhAABAgQIbCZwv9mkn2mQ50H/TLBelsAxBJ6Tt3m9XpP44bOvX38XGmT+H/77Ed3/w/J34RsYjfsFYJTfcAIECBAgMCOgAMy4m0qAAAECBEYFFIBRfsMJECBAgMCMgAIw424qAQIECBAYFVAARvkNJ0CAAAECMwIKwIy7qQQIECBAYFRAARjlN5wAAQIECMwIKAAz7qYSIECAAIFRAQVglN9wAgQIECAwI6AAzLibSoAAAQIERgUUgFF+wwkQIECAwIyAAjDjbioBAgQIEBgVUABG+Q0nQIAAAQIzAgrAjLupBAgQIEBgVEABGOU3nAABAgQIzAjcz4w1lQABAgTaBV6//i56C5999k2Uv16vUf4f334b5X/95ZfP0QucTndhPor7BSDiEyZAgAABAp0CCkDn3WxNgAABAgQiAQUg4hMmQIAAAQKdAgpA591sTYAAAQIEIgEFIOITJkCAAAECnQIKQOfdbE2AAAECBCIBBSDiEyZAgAABAp0CCkDn3WxNgAABAgQiAQUg4hMmQIAAAQKdAgpA591sTYAAAQIEIgEFIOITJkCAAAECnQIKQOfdbE2AAAECBCIBBSDiEyZAgAABAp0CCkDn3WxNgAABAgQiAQUg4hMmQIAAAQKdAveda9uaAAEC/xWInseePk/+6Df4+uvs/4ec9v/m3btDnzC73qHpvHkCBAgQINAroAD03s7mBAgQIEBgWUABWKYTJECAAAECvQIKQO/tbE6AAAECBJYFFIBlOkECBAgQINAroAD03s7mBAgQIEBgWUABWKYTJECAAAECvQIKQO/tbE6AAAECBJYFFIBlOkECBAgQINAroAD03s7mBAgQIEBgWUABWKYTJECAAAECvQIKQO/tbE6AAAECBJYFFIBlOkECBAgQINAroAD03s7mBAgQIEBgWUABWKYTJECAAAEC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oPVy9iZAgAABAoGAAhDgiRIgQIAAgVYBBaD1cvYmQIAAAQKBgAIQ4IkSIECAAIFWAQWg9XL2JkCAAAECgYACEOCJEiBAgACBVgEFoPVy9iZAgAABAoGAAhDgiRIgQIAAgVYBBaD1cvYmQIAAAQKBgAIQ4IkSIECAAIFWAQWg9XL2JkCAAAECgYACEOCJEiBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEDi6wL8BJ9rMPEP/wYcAAAAASUVORK5CYII=",
+                                "uuid": "{34a69fab-b5fe-4c9b-aa92-0663b30d4d03}"
+                            }
+                        ]
+                    },
+                    "height": 180,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.image",
+                    "uuid": "c6c2449a-377c-4ac6-ab39-aa6080281904",
+                    "width": 280,
+                    "x": 791.8923179591266,
+                    "y": 565.083398233008,
+                    "z": 7.519999999999884
+                },
+                {
+                    "data": {
+                        "branches": [
+                            "cat",
+                            "dog"
+                        ],
+                        "selected_branch": "cat"
+                    },
+                    "height": 84,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.branch",
+                    "uuid": "5f2278f4-53b8-46dd-91c0-0a62ae6276dd",
+                    "width": 140,
+                    "x": 1235.536100012705,
+                    "y": -294.69915370072863,
+                    "z": 7.059999999999894
+                },
+                {
+                    "data": {
+                        "UuidCurrentlyDisplayed": "{11a89571-79f3-41b7-91fb-83f7091574ce}",
+                        "autoOpening": true,
+                        "historyWidth": 66,
+                        "opened": false,
+                        "paused": false,
+                        "sources": [
+                            {
+                                "animated": false,
+                                "date": "Fri Jan 9 16:58:14 2026",
+                                "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAbx0lEQVR4Ae3dsWul6XUGcCkRxiQehumyGBNwiAuLLFhN2hCzKYKTwoWGxStSCoGCGxmDWBa8mIGAGmPBMLgKs8EZQbZIkWbbLVIpEFD+gSUk3TAMhiWN4mph3d37iHn26P1tNbPc853z/s535z58zbez4z8CBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAjcjcDu3VzGVQgQIEDgTQscHuzfvumed9nv6vrGb9Bdgm54rd/b8PM+ToAAAQIECNwDAQHgHizREQgQIECAwKYCAsCmYj5PgAABAgTugYAAcA+W6AgECBAgQGBTAQFgUzGfJ0CAAAEC90BAALgHS3QEAgQIECCwqYAAsKmYzxMgQIAAgXsgIADcgyU6AgECBAgQ2FRAANhUzOcJECBAgMA9EBAA7sESHYEAAQIECGwqIABs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piZAgAABApGAABDxKSZAgAABAjMFBICZezM1AQIECBCIBASAiE8xAQIECBCYKbCbjp2+D/zp82fpCFH9ydFxVJ8Wp+9zTvun+0v7q58tkH5/P3n83miAd158NHr+9vAvX72ORjg/PYvq28Xtf/89AWjfAfoTIECAAIGCgABQQNeSAAECBAi0BQSA9gb0J0CAAAECBQEBoICuJQECBAgQaAsIAO0N6E+AAAECBAoCAkABXUsCBAgQINAWEADaG9CfAAECBAgUBASAArqWBAgQIECgLSAAtDegPwECBAgQKAgIAAV0LQkQIECAQFtAAGhvQH8CBAgQIFAQEAAK6FoSIECAAIG2gADQ3oD+BAgQIECgICAAFNC1JECAAAECbQEBoL0B/QkQIECAQEFgN+2Zvk/+yeVFNMKjhw+i+rT45Og4vUS1Pn2fe3V4zZcX+OTxe6MN3nnx0ej5X756Hc1/fnoW1afFV9c38W9gOkOz3hOApr7eBAgQIECgJCAAlOC1JUCAAAECTQEBoKmvNwECBAgQKAkIACV4bQkQIECAQFNAAGjq602AAAECBEoCAkAJXlsCBAgQINAUEACa+noTIECAAIGSgABQgteWAAECBAg0BQSApr7eBAgQIECgJCAAlOC1JUCAAAECTQEBoKmvNwECBAgQKAkIACV4bQkQIECAQFNAAGjq602AAAECBEoCAkAJXlsCBAgQINAUEACa+noTIECAAIGSQP1dyIcH+7fJ2Z9cXiTlO48ePojqFRMgMFfgk8fvzR3+KzD5x1/7w+oUV9c39d+wKkDY3BOAEFA5AQIECBCYKCAATNyamQkQIECAQCggAISAygkQIECAwEQBAWDi1sxMgAABAgRCAQEgBFROgAABAgQmCggAE7dmZgIECBAgEAoIACGgcgIECBAgMFFAAJi4NTMTIECAAIFQQAAIAZUTIECAAIGJAgLAxK2ZmQABAgQIhAICQAionAABAgQITBQQACZuzcwECBAgQCAUEABCQOUECBAgQGCigAAwcWtmJkCAAAECoYAAEAIqJ0CAAAECEwX2Jg5tZgIECNyFwDsvPoou88nj96L6tPjP/vL300tE9R9/GpXvXF3f7GZXUJ0IeAKQ6KklQIAAAQJDBQSAoYszNgECBAgQSAQEgERPLQECBAgQGCogAAxdnLEJECBAgEAiIAAkemoJECBA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",
+                                "uuid": "{11a89571-79f3-41b7-91fb-83f7091574ce}"
+                            }
+                        ]
+                    },
+                    "height": 180,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.image",
+                    "uuid": "63130145-db3f-4d8c-984e-ca5ef8dc5e7d",
+                    "width": 280,
+                    "x": 789.987809816304,
+                    "y": 751.4081765090036,
+                    "z": 7.509999999999884
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "text",
+                                "value": "Ninon"
+                            },
+                            {
+                                "name": "x",
+                                "value": "50"
+                            },
+                            {
+                                "name": "y",
+                                "value": "30"
+                            },
+                            {
+                                "name": "color",
+                                "value": "blue"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addText"
+                    },
+                    "height": 72,
+                    "isExpanded": false,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "3d0723d5-1a5f-4513-8400-1f108c807b7a",
+                    "width": 350,
+                    "x": 1448.4462162071313,
+                    "y": -508.5104709441209,
+                    "z": 7.119999999999893
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "base64",
+                                "value": "89504e470d0a1a0a0000000d4948445200000200000002000806000000f478d4fa00001b4a494441547801eddd3f8aa4f7d505e06ad338555606ef403830681ba6033b3108a616212a9d489929147803861ed006066f63c0d1444e0dee2538507bfc27182911fa9dd67bdf33eff34532e8d4bdf5dcaad6f92a794f27ff4780000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102040810204080000102047e5ce0eec7ff15ffc6cf2cf01cbebe1b8680e204081038a2c02f8ef8a6bd67020408102070740105e0e89f00ef9f000102040e29a0001cf2ecde34010204081c5d400138fa27c0fb2740800081430a2800873cbb374d80000102471750008efe09f0fe09102040e090020ac021cfee4d13204080c0d1051480a37f02bc7f0204081038a4800270c8b37bd30408102070740105e0e89f00ef9f000102040e29a0001cf2ecde34010204081c5d400138fa27c0fb2740800081430a2800873cbb374d80000102471750008efe09f0fe09102040e090020ac021cfee4d13204080c0d1053c4b3eff043c272f71bd5e93f8e976bb45f90f619f8154509e00010285027e01283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402aa000a482f20408102040a0504001283c9a950910204080402a709fbe803c01020408d40a3c879bdf8579f14101bf000ce21b4d8000010204a60414802979730910204080c0a0800230886f34010204081098125000a6e4cd25408000010283020ac020bed10408102040604a40019892379700010204080c0a280083f846132040800081290105604ade5c02040810203028a0000ce21b4d8000010204a60414802979730910204080c0a0800230886f34010204081098125000a6e4cd25408000010283020ac020bed10408102040604a40019892379700010204080c0a280083f8461320408000812981fba9c1e612204080402cf09cbcc2f57a4de2a7dbed16cdff30fc2e5a403812f00b40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a051480cebbd99a000102040844020a40c4274c80000102043a05ee3bd7feded6e9f3a8bff7623ff57fa4cfd3fea9f3fcfb04087c5202d1dfaff4efcf575f7c1161dea2b4f0b4805f00a62f603e01020408101810500006d08d244080000102d3020ac0f405cc27408000010203020ac000ba910408102040605a400198be80f90408102040604040011840379200010204084c0b2800d317309f00010204080c08280003e84612204080008169010560fa02e61320408000810101056000dd480204081020302da0004c5fc07c02040810203020a0000ca01b498000010204a6051480e90b984f8000010204060414800174230910204080c0b48002307d01f30910204080c080c0ddc0cc1f8e1c7d1ef60f97d9fa7fdf6ef113b5f770c3add9cc23b01781d1bf5f5f7df1c5a8c337efde45f3fdfd8bf8e2b05f0062422f408000010204fa041480be9bd9980001020408c4020a404ce8050810204080409f8002d077331b1320408000815840018809bd000102040810e8135000fa6e66630204081020100b280031a1172040800001027d020a40dfcd6c4c80000102046201052026f4020408102040a04f4001e8bb998d0910204080402ca000c4845e800001020408f40928007d37b33101020408108805148098d00b1020408000813e0105a0ef6636264080000102b1800210137a010204081020d027f012cf921f7d1e764afe02cfa34e5778891ba43bc81320b02650fdf76fed2def27f5027fbf0ffdf7d72f00fbf92cdb8400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c26a0006c466d100102040810d88f8002b09f5bd88400010204086c2670bfd9a49f6990e741ff4cb05e96c031049e93b779bd5e93f8e1b3af5f7f171a64fe1ffefb11ddffc3f277e11b188dfb056094df7002040810203023a000ccb89b4a800001020446051480517ec30910204080c08c800230e36e2a01020408101815500046f90d27408000010233020ac08cbba904081020406054400118e5379c0001020408cc08280033eea61220408000815101056094df7002040810203023a000ccb89b4a800001020446051480517ec30910204080c08c800230e36e2a01020408101815500046f90d27408000010233020ac08cbba904081020406054400118e5379c0001020408cc08dccf8c359500010204da055ebffe2e7a0b9f7df64d94bf5eaf51fe1fdf7e1be57ffde597cfd10b9c4e77613e8afb0520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d020a40e7dd6c4d800001020422010520e2132640800001029d02f79d6bdb9a000102ff15889ec79e3e4ffee837f8faebecff879cf6ffe6ddbb439f30bbdea1e9bc790204081020d02ba000f4decee604081020406059400158a613244080000102bd020a40efed6c4e800001020496051480653a410204081020d02ba000f4decee604081020406059400158a613244080000102bd020a40efed6c4e800001020496051480653a410204081020d02ba000f4decee604081020406059400158a613244080000102bd020a40efed6c4e800001020496051480653a410204081020d02ba000f4decee604081020406059400158a613244080000102bd02f7bdabdb9c00811d083c4feef0bb5ffd2d1cff26cc8b27024f4f4f495c3614f00b4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a051480c6abd999000102040884020a4008284e80000102041a05ee5e60e9e879e097cb255ae17c3e47f9dbed16e53f845fc230dd41feb802d1f72f65bb5eafd14bbc7ff32aca4f873f7ff5667a85d1f94f4f4fd1fcc7c7c728bf8370f5df7fbf00ece01364050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b58002b0b5b87904081020406007020ac00e8e60050204081020b0b5c01e9e651c3dcffc72b94466e7f339cadf6eb7282f4c2011b85eaf49bc3efbfecdabeaf7f0f9ab37d5fbefe0efdf1efe1b567b43bf00d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6053e8567293fafbffdd3e9e8cf534fec6409b40bbc7ff3aafd2d44fbfff59fbf8df22f10fe14fe1bf4020c332fe117801977530910204080c0a8800230ca6f3801020408109811500066dc4d254080000102a3020ac028bfe10408102040604640019871379500010204088c0a2800a3fc8613204080008119010560c6dd540204081020302aa0008cf21b4e8000010204660414801977530910204080c0a8800230ca6f3801020408109811500066dc4d254080000102a3020ac028bfe10408102040604640019871379500010204088c0a2800a3fc8613204080008119010560c6dd540204081020302af0293c8bf93911bc5c2e49fc743e9fa3bc300102bd02efdfbc8a96ffd31fff10e5d3f06ffefcf7f4253e85ff86a406b579bf00d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d6051480753b490204081020502ba000d49ecee20408102040605d400158b793244080000102b5020a40ede92c4e8000010204d605eed7a39204081038b6c0e7afde6400ffcae2d2041201bf00247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a0544001283d9cb509102040804022a000247ab20408102040a054e0be746f6b132040a05ee02fbffcfdf07bb80dcf377e52c02f0093fa661320408000812101056008de5802040810203029a0004cea9b4d8000010204860414802178630910204080c0a4800230a96f3601020408101812500086e08d25408000010293020ac0a4bed90408102040604840011882379600010204084c0a280093fa661320408000812101056008de5802040810203029a0004cea9b4d8000010204860414802178630910204080c0a4800230a96f3601020408101812500086e08d25408000010293020ac0a4bed904081020406048e07e68ee4b8ebd4b5eecf1f1f139c95f2e97247e3a9fcf515e984022f0f4f494c4c7b31fbebfd10ebebf119f70b9805f00ca0f687d0204081020b022a000aca8c9102040800081720105a0fc80d62740800001022b020ac08a9a0c010204081028175000ca0f687d0204081020b022a000aca8c9102040800081720105a0fc80d62740800001022b020ac08a9a0c010204081028175000ca0f687d0204081020b022a000aca8c9102040800081720105a0fc80d62740800001022b020ac08a9a0c010204081028175000ca0f687d0204081020b022a000aca8c9102040800081720105a0fc80d62740800001022b02772ba14f2cf33cf97e3c8f3cd36f7f9e7df6eef3f4e3e363fe22077e85a37f7f6fb75b7a7dff0d4a0583bc5f00023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02aa000b45ecede040810204020105000023c510204081020d02ae059cca7d373ebf1feb3b7e791c7cf236f3eff4bec7ef4bf01a3dffff6efefed167fff8efef97b89eff0f26bf80560994e900001020408f40a2800bdb7b33901020408105816500096e904091020408040af8002d07b3b9b13204080008165010560994e900001020408f40a2800bdb7b33901020408105816500096e904091020408040af8002d07b3b9b13204080008165010560994e900001020408f40a2800bdb7b33901020408105816500096e904091020408040af8002d07b3b9b13204080008165010560994e900001020408f40a2800bdb7b33901020408105816500096e904091020408040af8067319f4ed1f3c01f1e1ea2ebbf7dfb36ca7b9ef8c96738fa041d3eecfb3ff811b8dd6ee974dfff40d02f00019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e280102040810681550005a2f676f020408102010082800019e2801020408106815b86f5ddcdeff13787c7c8c282e974b943f9fcf515e984028f09ce41f1e1e92f878d6f77ffc04d50bf805a0fa7c962740800001026b020ac09a9b140102040810a8165000aacf67790204081020b026a000acb9491120408000816a0105a0fa7c962740800001026b020ac09a9b140102040810a8165000aacf67790204081020b026a000acb9491120408000816a0105a0fa7c962740800001026b020ac09a9b140102040810a8165000aacf67790204081020b026a000acb9491120408000816a0105a0fa7c962740800001026b020ac09a9b140102040810a8165000aacf67790204081020b02670b716db55aafa79e06fdfbe4d31d31b467e97cb25daff7c3e47f9dbed16e53f8453bf74fed1f3d1e7efe1e161d46f07dfdff4fd47febeff29ff6cde2f00b3fea61320408000811101056084dd500204081020302ba000ccfa9b4e8000010204460414801176430910204080c0ac800230eb6f3a01020408101811500046d80d254080000102b3020ac0acbfe9040810204060444001186137940001020408cc0a2800b3fea61320408000811101056084dd500204081020302ba000ccfa9b4e8000010204460414801176430910204080c0ac800230eb6f3a01020408101811500046d80d254080000102b3020ac0acbfe904081020406044600fcf428f9e47ed79e0239f9b8f8746f7f33cf18f292bff39babfef6fe5cd3f5e3ababfefffc794dbffb35f00b637379100010204088c0b2800e327b0000102040810d85e4001d8dedc440204081020302ea0008c9fc0020408102040607b0105607b73130910204080c0b88002307e020b102040800081ed051480edcd4d244080000102e3020ac0f8092c408000010204b6175000b637379100010204088c0b2800e327b0000102040810d85e4001d8dedc440204081020302ea0008c9fc0020408102040607b0105607b73130910204080c0b88002307e020b102040800081ed051480edcd4d244080000102e30277e31be40b44cfa3cec79f3e05c31760587e89e87ee9f3c497b7fe7ff0f1f1317d89a37f7ea2fba7f81ff247f77f01c2e825a2fbfbfe47f627bf00647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a0524001a83c9ba509102040804026a000647ed20408102040a052c0b3b02bcf66e98f04a2e7897ff43aabffe83bb42a27472017f0fd0f0cfd0210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e089122040800081560105a0f572f626408000010281800210e0891220408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081038bac0bf0127dacc3c43ffc1870000000049454e44ae426082"
+                            },
+                            {
+                                "name": "x",
+                                "value": "300"
+                            },
+                            {
+                                "name": "y",
+                                "value": "70"
+                            },
+                            {
+                                "name": "width",
+                                "value": "64"
+                            },
+                            {
+                                "name": "height",
+                                "value": "64"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addImage"
+                    },
+                    "height": 224,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "6892562c-0eed-4e82-a930-99e5646b9f19",
+                    "width": 350,
+                    "x": 1464.6091844803968,
+                    "y": 1256.3856991334785,
+                    "z": 7.039999999999894
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "base64",
+                                "value": "89504e470d0a1a0a0000000d4948445200000200000002000806000000f478d4fa00001bc7494441547801edddb16ba5e97506702911c6241e86e9b2181370880b8b2c584dda10b3298293c28586c52b520a81821b19835816bc9881801a63c130b80ab3c11941b6489166db2d52291050fe812524dd300c86258de26a61ddddfb8879f6e8fd6d35b3dcf39df3fece77e73e7ccdb7b3e33f020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408dc8dc0eedd5cc65508102040e04d0b1c1eecdfbee99e77d9efeafac66fd05d826e78addfdbf0f33e4e800001020408dc030101e01e2cd1110810204080c0a60202c0a6623e4f8000010204ee818000700f96e8080408102040605301016053319f274080000102f7404000b8074b74040204081020b0a98000b0a998cf1320408000817b202000dc83253a020102040810d8544000d854cce70910204080c03d101000eec1121d8100010204086c2a20006c2ae6f30408102040e01e080800f760898e408000010204361510003615f3790204081020700f0404807bb044472040800001029b0a08009b8af93c0102040810b807027bd3cfe07dd8d337687e027305dafffe7cf093bfa8e2bdf5f6bb59ffa3e3dbe40257d737bb49fdeab59e00ac7e07383f010204082c2920002cb976872640800081d5050480d5ef00e727408000812505048025d7eed004081020b0ba8000b0fa1de0fc04081020b0a48000b0e4da1d9a000102045617100056bf039c9f0001020496141000965cbb4313204080c0ea0202c0ea7780f313204080c0920202c0926b776802040810585d400058fd0e707e02040810585240005872ed0e4d80000102ab0b0800abdf01ce4f800001024b0a08004baedda1091020406075010160f53bc0f909102040604981bdf6a9d3f7693f7dfeac7d84acbff761677eaa090402e9bf3f41eb3b29fd977ffef7e83adffeceb7a2fa9d9d5f47f57ff3fd3f8dea7f5b7c9b5ce0eafa6637a99f5eeb09c0f40d9a9f00010204086c2120006c81a68400010204084c171000a66fd0fc0408102040600b0101600b3425040810204060ba8000307d83e62740800001025b0808005ba029214080000102d3050480e91b343f0102040810d8424000d8024d090102040810982e20004cdfa0f90910204080c0160202c016684a0810204080c074010160fa06cd4f8000010204b6101000b64053428000010204a60b0800d337687e0204081020b0858000b0059a120204081020305d400098be41f31320408000812d04f6b6a8f95249fa3eeda7cf9f7de97a6ffa2f2747c76fbae597faadfe3eea2f61f80b01021b09dc7cf6f9469fffdd0f7ffb3bbffb7fdeecdf7ff40f1f670d7ffac3ac7e67e736bd40b33efdfdf004a0b93dbd09102040804049400028c16b4b80000102049a020240535f6f0204081020501210004af0da122040800081a68000d0d4d79b00010204089404048012bcb60408102040a029200034f5f5264080000102250101a004af2d0102040810680a08004d7dbd09102040804049400028c16b4b80000102049a020240535f6f0204081020501210004af0da122040800081a68000d0d4d79b00010204089404048012bcb60408102040a029200034f5f52640800001022581bd52df3b6b7b72741c5d2b7d9f72d45c31010291c0e1c1fee8f7b94787ff0a147ff7f12fa329fe60ffafa2fa5ffde01b51fdd3e7cfa2fab4f8affff647d125fefc4ffe38baff3d0188f815132040800081990202c0ccbd999a000102040844020240c4a7980001020408cc14100066eecdd4040810204020121000223ec5040810204060a6800030736fa626408000010291800010f12926408000010233050480997b3335010204081088040480884f31010204081098292000ccdc9ba9091020408040242000447c8a0910204080c04c010160e6de4c4d800001020422010120e2534c8000010204660a080033f7666a020408102010090800119f6202040810203053606fe6d8a6264080402eb0ffadaf4717b9f9ecf3a87e7af17fbdf8fbe808bffac137a2faef1d7c33aa5fbdd81380d5ef00e727408000812505048025d7eed004081020b0ba8000b0fa1de0fc04081020b0a48000b0e4da1d9a000102045617100056bf039c9f0001020496141000965cbb4313204080c0ea0202c0ea7780f313204080c0920202c0926b776802040810585d400058fd0e707e02040810585240005872ed0e4d80000102ab0b0800abdf01ce4f800001024b0a08004baedda1091020406075010160f53bc0f9091020406049010160c9b53b3401020408ac2e2000ac7e07383f010204082c29b07778b07f9b9cfce9f36749b95a0204161698feefcfe5f98fa3eddd7cf679549f167fefe09bd125fee3fabfa3fab4f8adb7df4d2f51adffb77ffda7a8ffc9d17154ef0940c4a7980001020408cc14100066eecdd4040810204020121000223ec5040810204060a6800030736fa626408000010291800010f12926408000010233050480997b3335010204081088040480884f31010204081098292000ccdc9ba9091020408040242000447c8a0910204080c04c010160e6de4c4d800001020422010120e2534c8000010204660a080033f7666a020408102010090800119f6202040810203053400098b9375313204080008148400088f8141320408000819902bbe9d8edf779a7ef43bebabe890d5243f504a60aa4dfff1ffedf6faa477fe7c547d5fe97e73f8efa9f3ef94554ff3ffff9eba83e2d7eebed77a34bbc7cf53aaa6f179f9f9e4523a4bf5f9e0044fc8a0910204080c04c010160e6de4c4d800001020422010120e2534c8000010204660a080033f7666a020408102010090800119f6202040810203053400098b9375313204080008148400088f814132040800081990202c0ccbd999a000102040844020240c4a7980001020408cc14100066eecdd4040810204020121000223ec5040810204060a6800030736fa626408000010291800010f12926408000010233050480997b3335010204081088040480884f3101020408109829b09b8e9dbe0ffce9f367e90851fdc9d171549f16a7ef734efba7fb4bfbab9f2d907e7f3f79fcde6880775e7c347afef6f02f5fbd8e46383f3d8beadbc5ed7fff3d0168df01fa1320408000818280005040d7920001020408b4050480f606f4274080000102050101a080ae250102040810680b0800ed0de84f80000102040a020240015d4b0204081020d0161000da1bd09f00010204081404048002ba960408102040a02d2000b437a03f01020408102808080005742d0910204080405b4000686f407f0204081020501010000ae85a122040800081b68000d0de80fe0408102040a020200014d0b52440800001026d0101a0bd01fd091020408040416037ed99be4ffec9e54534c2a3870fa2fab4f8e4e838bd44b53e7d9f7b7578cd9717f8e4f17ba30dde79f1d1e8f95fbe7a1dcd7f7e7a16d5a7c557d737f16f603a43b3de1380a6bede0408102040a024200094e0b52540800001024d0101a0a9af3701020408102809080025786d09102040804053400068eaeb4d80000102044a020240095e5b0204081020d01410009afa7a1320408000819280005082d796000102040834050480a6bede0408102040a024200094e0b52540800001024d0101a0a9af3701020408102809080025786d09102040804053400068eaeb4d80000102044a020240095e5b0204081020d01410009afa7a1320408000819240fd5dc88707fbb7c9d99f5c5e24e53b8f1e3e88ea1513203057e093c7efcd1dfe2b30f9c75ffbc3ea1457d737f5dfb02a40d8dc13801050390102040810982820004cdc9a990910204080402820008480ca0910204080c044010160e2d6cc4c80000102044201012004544e8000010204260a080013b766660204081020100a080021a07202040810203051400098b83533132040800081504000080195132040800081890202c0c4ad999900010204088402024008a89c00010204084c141000266ecdcc0408102040201410004240e5040810204060a2800030716b66264080000102a1800010022a2740800001021305f6260e6d66020408dc85c03b2f3e8a2ef3c9e3f7a2fab4f8cffef2f7d34b44f51f7f1a95ef5c5ddfec6657509d08780290e8a925408000010243050480a18b3336010204081048040480444f2d0102040810182a20000c5d9cb1091020408040222000247a6a0910204080c050010160e8e28c4d800001020412010120d1534b8000010204860a08004317676c020408102090080800899e5a02040810203054400018ba386313204080008144400048f4d4122040800081a10202c0d0c5199b000102040824020240a2a79600010204080c151000862eced8040810204020111000123db5040810204060a8c0f877311f1eecdf26f64f2e2f92f29d470f1f44f58a091020b0adc0ff3efbbb6d4befa4ee679f7e3dbaced5f5cdf8dfa008a05cec09407901da132040800081868000d050d793000102040894050480f202b42740800001020d0101a0a1ae270102040810280b0800e505684f80000102041a020240435d4f020408102050161000ca0bd09e00010204083404048086ba9e0408102040a02c20009417a03d0102040810680808000d753d091020408040594000282f407b0204081020d01010001aea7a122040800081b28000505e80f60408102040a021200034d4f5244080000102650101a0bc00ed0910204080404360afd1544f0204be1a022f5fbd8e06393f3d8bea9f3e7f16d5af5efc47c7ff1811a4fbdff934db7f34bce258c0138098d0050810204080c03c010160dece4c4c8000010204620101202674010204081020304f400098b7331313204080008158400088095d800001020408cc131000e6edccc4040810204020161000624217204080000102f3040480793b333101020408108805048098d0050810204080c03c010160dece4c4c8000010204620101202674010204081020304f400098b7331313204080008158400088095d800001020408cc131000e6edccc4040810204020161000624217204080000102f304f6e68d6c6202040810b80b81f3d3b3e83257d737bbd1051457053c01a8f26b4e80000102043a020240c75d57020408102050151000aafc9a1320408000818e8000d071d7950001020408540504802abfe60408102040a023200074dc75254080000102550101a0caaf390102040810e80808001d775d091020408040554000a8f26b4e80000102043a020240c75d57020408102050151000aafc9a1320408000818e8000d071d7950001020408540504802abfe60408102040a023200074dc75254080000102550101a0caaf390102040810e8082cff2ee7c383fddb84fec9e54552bef3e8e183a85e3181a6c0cb57afa3f6e9fbe89f3e7f16f5579c099c1c1d4717b8babe59fe3728020c8b3d01080195132040800081890202c0c4ad999900010204088402024008a89c00010204084c141000266ecdcc0408102040201410004240e5040810204060a2800030716b66264080000102a1800010022a27408000010213050480895b33330102040810080504801050390102040810982820004cdc9a990910204080402820008480ca0910204080c044010160e2d6cc4c80000102044201012004544e8000010204260a080013b766660204081020100a080021a07202040810203051c0bb98c3ad1d1eecdf26977872799194ef3c7af820aa9f5e9cbe8f7efaf9579ffffcf42c22f0fd8bf8764e8e8ea30b5c5ddff80d8a04b3624f00323fd5040810204060a4800030726d8626408000010299800090f9a926408000010223050480916b33340102040810c8040480cc4f350102040810182920008c5c9ba1091020408040262000647eaa0910204080c048010160e4da0c4d800001020432010120f3534d8000010204460a080023d76668020408102090090800999f6a02040810203052400018b936431320408000814c4000c8fc54132040800081910202c0c8b5199a000102040864020240e6a79a00010204088c14f02ee6706d8707fbb7e125a2f2d5df679ebe8f3cc257bcbcc0eadfbff40648bfbf57d7377ec38225780210e02925408000010253050480a99b3337010204081008040480004f290102040810982a20004cdd9cb909102040804020200004784a0910204080c054010160eae6cc4d800001020402010120c0534a8000010204a60a08005337676e020408102010080800019e5202040810203055400098ba397313204080008140400008f094122040800081a90202c0d4cd999b00010204080402024080a79400010204084c151000a66ecedc040810204020101000023ca5040810204060aac0ded4c1ef6aeec383fddbe45a673fff2029dfb978ffc3a85e7126e07de2995fbbbafdfd3d3f3d8b089e5c5e44f58f1e3e88ea15af2de009c0dafb777a02040810585440005874f18e4d800001026b0b08006befdfe9091020406051010160d1c53b3601020408ac2d2000acbd7fa72740800081450504804517efd804081020b0b68000b0f6fe9d9e0001020416151000165dbc6313204080c0da0202c0dafb777a02040810585440005874f18e4d800001026b0b08006befdfe9091020406051010160d1c53b3601020408ac2d2000acbd7fa72740800081450504804517efd804081020b0b68000b0f6fe9d9e000102041615d89d7eeef6fbc0db7e17ef7f188d30fd7de42747c7d1f9afae6fc67f07228072f1f4ef6ffafd4bf9a77f7fd3f3fbfe67829e00647eaa0910204080c048010160e4da0c4d800001020432010120f3534d8000010204460a080023d76668020408102090090800999f6a02040810203052400018b936431320408000814c4000c8fc54132040800081910202c0c8b5199a000102040864020240e6a79a00010204088c14100046aecdd0040810204020131000323fd5040810204060a4800030726d8626408000010299800090f9a926408000010223050480916b33340102040810c8040480cc4f3501020408101829b03772ea7b3474fa3ef1f87df6a767b709e7eaef234fecd412f0fd750f34053c0168eaeb4d80000102044a020240095e5b0204081020d01410009afa7a1320408000819280005082d796000102040834050480a6bede0408102040a024200094e0b52540800001024d0101a0a9af3701020408102809080025786d09102040804053400068eaeb4d80000102044a020240095e5b0204081020d01410009afa7a1320408000819280005082d796000102040834050480a6bede0408102040a024200094e0b52540800001024d0101a0a9af3701020408102809ec96fa7ed1f6f0603f7a1ffdd9cf3ff8e25a8d3f5cbcff61d4367e1f78d47d6727f57f7279114df0e8e183a83e2d3e393a8e2ed1de5f34fc1d14a7f78fefef1d2c21b844ba3fdfff9bfa6f68b0fe1d4f00123db5040810204060a88000307471c626408000010289800090e8a925408000010243050480a18b3336010204081048040480444f2d0102040810182a20000c5d9cb1091020408040222000247a6a0910204080c050010160e8e28c4d800001020412010120d1534b8000010204860a08004317676c020408102090080800899e5a02040810203054400018ba386313204080008144400048f4d4122040800081a10202c0d0c5199b000102040824020240a2a79600010204080c15d86bcf1dbf4ffdfd0f6f9b6788e76f0effdbdef1fca767917ffa3ef132dff2ede3fbc7f777e97be8e5abd74b9fbf7d784f00da1bd09f00010204081404048002ba960408102040a02d2000b437a03f01020408102808080005742d0910204080405b4000686f407f0204081020501010000ae85a122040800081b68000d0de80fe0408102040a020200014d0b52440800001026d0101a0bd01fd09102040804041400028a06b498000010204da0202407b03fa1320408000818280005040d7920001020408b4050480f606f4274080000102050101a080ae250102040810680b0800ed0de84f80000102040a02bb859e5a12f842e0f060fff68bbf14fe10bfcfbe30b39604be2a02edef6feab0faf7df1380f40e524f8000010204060a0800039766640204081020900a0800a9a07a02040810203050400018b834231320408000815440004805d5132040800081810202c0c0a519990001020408a40202402aa89e00010204080c141000062ecdc80408102040201510005241f5040810204060a0800030706946264080000102a98000900aaa27408000010203050480814b333201020408104805048054503d0102040810182820000c5c9a910910204080402a2000a482ea091020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204082c2cf0ff906147dc5f750b120000000049454e44ae426082"
+                            },
+                            {
+                                "name": "x",
+                                "value": "300"
+                            },
+                            {
+                                "name": "y",
+                                "value": "70"
+                            },
+                            {
+                                "name": "width",
+                                "value": "64"
+                            },
+                            {
+                                "name": "height",
+                                "value": "64"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addImage"
+                    },
+                    "height": 224,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "0354f723-96ef-4cf2-9820-cf2ac0621645",
+                    "width": 350,
+                    "x": 1465.617110162087,
+                    "y": 1480.9246464846574,
+                    "z": 6.999999999999895
+                },
+                {
+                    "data": {
+                        "branches": [
+                            "cat",
+                            "dog"
+                        ],
+                        "selected_branch": "dog"
+                    },
+                    "height": 84,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.branch",
+                    "uuid": "3c4228e4-98b8-424b-b1fa-b0cb4eb6f3a1",
+                    "width": 140,
+                    "x": 1279.3464935722177,
+                    "y": 1359.1763616643586,
+                    "z": 7.069999999999894
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "text",
+                                "value": "Yige"
+                            },
+                            {
+                                "name": "x",
+                                "value": "300"
+                            },
+                            {
+                                "name": "y",
+                                "value": "30"
+                            },
+                            {
+                                "name": "color",
+                                "value": "red"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addText"
+                    },
+                    "height": 72,
+                    "isExpanded": false,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "a4519c64-c222-4d38-afc3-504a4c11e7bc",
+                    "width": 350,
+                    "x": 1470.9720012431549,
+                    "y": 1178.5450115442861,
+                    "z": 7.129999999999892
+                },
+                {
+                    "data": {
+                        "entries": [
+                            "PAWS OF FURRY"
+                        ],
+                        "value_type": "STRING"
+                    },
+                    "height": 88,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.writer",
+                    "uuid": "53dd1439-416e-45f8-8cc6-114737196ada",
+                    "width": 250,
+                    "x": -438.1627098613768,
+                    "y": -14.726302890595207,
+                    "z": 7.4099999999998865
+                },
+                {
+                    "agent": {
+                    },
+                    "class": "534d5cfd-b930-46a7-9af0-ca8970a26e24",
+                    "height": 276,
+                    "name": "Joiner",
+                    "simulationTime": 5000,
+                    "uuid": "ec31dbb5-b699-4913-abb2-40469d75b43e",
+                    "width": 250,
+                    "x": -917.0274840802069,
+                    "y": 509.26011944676316,
+                    "z": 6.809999999999899
+                },
+                {
+                    "agent": {
+                    },
+                    "class": "7e2da185-c7f1-4cfd-bc26-246c93d6a29f",
+                    "height": 452,
+                    "name": "Host",
+                    "simulationTime": 5000,
+                    "uuid": "bdba3339-bb40-40b7-9425-9677f3373525",
+                    "width": 250,
+                    "x": -921.1008428536699,
+                    "y": 864.6726642012727,
+                    "z": 6.7899999999999
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                        ],
+                        "selectedAgentUuid": "ec31dbb5-b699-4913-abb2-40469d75b43e",
+                        "selectedService": "spawnEnemi"
+                    },
+                    "height": 64,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "8e6d9c93-f4b0-491f-bfc4-aaefe2df8cf5",
+                    "width": 350,
+                    "x": -949.4004262424955,
+                    "y": 1541.1481946992476,
+                    "z": 6.819999999999899
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                        ],
+                        "selectedAgentUuid": "ec31dbb5-b699-4913-abb2-40469d75b43e",
+                        "selectedService": "spawnPoison"
+                    },
+                    "height": 64,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "86ea2cc9-d6a6-4af5-87af-a2c1b316ddc8",
+                    "width": 350,
+                    "x": -952.56680069961,
+                    "y": 1476.191444777442,
+                    "z": 6.829999999999899
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                        ],
+                        "selectedAgentUuid": "ec31dbb5-b699-4913-abb2-40469d75b43e",
+                        "selectedService": "spawnTreat"
+                    },
+                    "height": 64,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "e2ca5b5a-fea0-4dc6-accf-b2d476824b4b",
+                    "width": 350,
+                    "x": -953.4164226119631,
+                    "y": 1412.7338437663943,
+                    "z": 6.839999999999899
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "type",
+                                "value": "rectangle"
+                            },
+                            {
+                                "name": "x",
+                                "value": "50"
+                            },
+                            {
+                                "name": "y",
+                                "value": "150"
+                            },
+                            {
+                                "name": "width",
+                                "value": "64"
+                            },
+                            {
+                                "name": "height",
+                                "value": "300"
+                            },
+                            {
+                                "name": "fill",
+                                "value": "blue"
+                            },
+                            {
+                                "name": "stroke",
+                                "value": "black"
+                            },
+                            {
+                                "name": "strokeWidth",
+                                "value": "3"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addShape"
+                    },
+                    "height": 64,
+                    "isExpanded": false,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "ae24504a-9c41-4b09-8da2-e72d8668d52a",
+                    "width": 350,
+                    "x": 1440.3454256011526,
+                    "y": 127.3292641767082,
+                    "z": 7.389999999999887
+                },
+                {
+                    "data": {
+                        "entries": [
+                        ],
+                        "value_type": "IMPULSION"
+                    },
+                    "height": 60,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.writer",
+                    "uuid": "9eb1a9c1-16a6-44b9-8e54-b77085205e0e",
+                    "width": 250,
+                    "x": 1143.7043687321311,
+                    "y": 1784.5351831419337,
+                    "z": 7.4999999999998845
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "hideLabels"
+                    },
+                    "height": 64,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "fc75d2ea-30de-4816-8e97-453473273da0",
+                    "width": 350,
+                    "x": -138.0607379490798,
+                    "y": 197.85365573556248,
+                    "z": 7.429999999999886
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "type",
+                                "value": "rectangle"
+                            },
+                            {
+                                "name": "x",
+                                "value": "300"
+                            },
+                            {
+                                "name": "y",
+                                "value": "150"
+                            },
+                            {
+                                "name": "width",
+                                "value": "64"
+                            },
+                            {
+                                "name": "height",
+                                "value": "300"
+                            },
+                            {
+                                "name": "fill",
+                                "value": "red"
+                            },
+                            {
+                                "name": "stroke",
+                                "value": "black"
+                            },
+                            {
+                                "name": "strokeWidth",
+                                "value": "3"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addShape"
+                    },
+                    "height": 64,
+                    "isExpanded": false,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "296c2846-a6fc-413a-a48c-f2d7b9a81a8a",
+                    "width": 350,
+                    "x": 1464.2953977886086,
+                    "y": 1765.162498675088,
+                    "z": 7.469999999999885
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "type",
+                                "value": "rectangle"
+                            },
+                            {
+                                "name": "x",
+                                "value": "300"
+                            },
+                            {
+                                "name": "y",
+                                "value": "150"
+                            },
+                            {
+                                "name": "width",
+                                "value": "64"
+                            },
+                            {
+                                "name": "height",
+                                "value": "100"
+                            },
+                            {
+                                "name": "fill",
+                                "value": "white"
+                            },
+                            {
+                                "name": "stroke",
+                                "value": "black"
+                            },
+                            {
+                                "name": "strokeWidth",
+                                "value": "3"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addShape"
+                    },
+                    "height": 72,
+                    "isExpanded": false,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "73c6a87a-8c3e-4966-a4f5-f08f88b8870f",
+                    "width": 350,
+                    "x": 1463.2935395809927,
+                    "y": 1842.8723678295846,
+                    "z": 7.479999999999885
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "type",
+                                "value": "rectangle"
+                            },
+                            {
+                                "name": "x",
+                                "value": "50"
+                            },
+                            {
+                                "name": "y",
+                                "value": "150"
+                            },
+                            {
+                                "name": "width",
+                                "value": "64"
+                            },
+                            {
+                                "name": "height",
+                                "value": "100"
+                            },
+                            {
+                                "name": "fill",
+                                "value": "white"
+                            },
+                            {
+                                "name": "stroke",
+                                "value": "black"
+                            },
+                            {
+                                "name": "strokeWidth",
+                                "value": "3"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addShape"
+                    },
+                    "height": 72,
+                    "isExpanded": false,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "bbe5798e-bb4c-4cd9-a5d4-d503557e17cb",
+                    "width": 350,
+                    "x": 1439.5587252951789,
+                    "y": 196.40177703184656,
+                    "z": 7.529999999999884
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "text",
+                                "value": "34"
+                            },
+                            {
+                                "name": "x",
+                                "value": "374"
+                            },
+                            {
+                                "name": "y",
+                                "value": "275"
+                            },
+                            {
+                                "name": "color",
+                                "value": "red"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addText"
+                    },
+                    "height": 72,
+                    "isExpanded": false,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "1b930663-4135-4e28-bb72-f6757cca51d4",
+                    "width": 350,
+                    "x": 1466.0291050709327,
+                    "y": 1925.3838641024581,
+                    "z": 7.489999999999885
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "text",
+                                "value": "2"
+                            },
+                            {
+                                "name": "x",
+                                "value": "124"
+                            },
+                            {
+                                "name": "y",
+                                "value": "275"
+                            },
+                            {
+                                "name": "color",
+                                "value": "blue"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addText"
+                    },
+                    "height": 72,
+                    "isExpanded": false,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "321c783a-033c-417f-8c56-c052fb6d843e",
+                    "width": 350,
+                    "x": 1438.97423387678,
+                    "y": 273.5128686417868,
+                    "z": 7.369999999999887
+                },
+                {
+                    "data": {
+                        "branches": [
+                            "single",
+                            "multi"
+                        ],
+                        "selected_branch": "single"
+                    },
+                    "height": 84,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.branch",
+                    "uuid": "8c2636e2-0497-45a1-a3de-93bfcc85b07c",
+                    "width": 140,
+                    "x": 517.8801816781138,
+                    "y": 1325.582499112602,
+                    "z": 7.439999999999886
+                },
+                {
+                    "data": {
+                        "entries": [
+                        ],
+                        "value_type": "IMPULSION"
+                    },
+                    "height": 60,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.writer",
+                    "uuid": "bb01908d-6288-4cf9-a04c-eb0b6a03d9eb",
+                    "width": 250,
+                    "x": 1096.2690153065566,
+                    "y": 123.4368033354242,
+                    "z": 7.539999999999884
+                },
+                {
+                    "data": {
+                        "synchronized_inputs": [
+                            "fake_input",
+                            "sync_input"
+                        ]
+                    },
+                    "height": 68,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.synchro",
+                    "uuid": "6da44dd5-c513-4021-82cf-90f3200698f6",
+                    "width": 100,
+                    "x": 766.2548687711077,
+                    "y": 1498.6908881635175,
+                    "z": 7.449999999999886
+                },
+                {
+                    "data": {
+                        "argumentValues": [
+                            {
+                                "name": "base64",
+                                "value": "89504e470d0a1a0a0000000d4948445200000200000002000806000000f478d4fa00001bc7494441547801edddb16ba5e97506702911c6241e86e9b2181370880b8b2c584dda10b3298293c28586c52b520a81821b19835816bc9881801a63c130b80ab3c11941b6489166db2d52291050fe812524dd300c86258de26a61ddddfb8879f6e8fd6d35b3dcf39df3fece77e73e7ccdb7b3e33f020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408102040800001020408dc8dc0eedd5cc65508102040e04d0b1c1eecdfbee99e77d9efeafac66fd05d826e78addfdbf0f33e4e800001020408dc030101e01e2cd1110810204080c0a60202c0a6623e4f8000010204ee818000700f96e8080408102040605301016053319f274080000102f7404000b8074b74040204081020b0a98000b0a998cf1320408000817b202000dc83253a020102040810d8544000d854cce70910204080c03d101000eec1121d8100010204086c2a20006c2ae6f30408102040e01e080800f760898e408000010204361510003615f3790204081020700f0404807bb044472040800001029b0a08009b8af93c0102040810b807027bd3cfe07dd8d337687e027305dafffe7cf093bfa8e2bdf5f6bb59ffa3e3dbe40257d737bb49fdeab59e00ac7e07383f010204082c2920002cb976872640800081d5050480d5ef00e727408000812505048025d7eed004081020b0ba8000b0fa1de0fc04081020b0a48000b0e4da1d9a000102045617100056bf039c9f0001020496141000965cbb4313204080c0ea0202c0ea7780f313204080c0920202c0926b776802040810585d400058fd0e707e02040810585240005872ed0e4d80000102ab0b0800abdf01ce4f800001024b0a08004baedda1091020406075010160f53bc0f909102040604981bdf6a9d3f7693f7dfeac7d84acbff761677eaa090402e9bf3f41eb3b29fd977ffef7e83adffeceb7a2fa9d9d5f47f57ff3fd3f8dea7f5b7c9b5ce0eafa6637a99f5eeb09c0f40d9a9f00010204086c2120006c81a68400010204084c171000a66fd0fc0408102040600b0101600b3425040810204060ba8000307d83e62740800001025b0808005ba029214080000102d3050480e91b343f0102040810d8424000d8024d090102040810982e20004cdfa0f90910204080c0160202c016684a0810204080c074010160fa06cd4f8000010204b6101000b64053428000010204a60b0800d337687e0204081020b0858000b0059a120204081020305d400098be41f31320408000812d04f6b6a8f95249fa3eeda7cf9f7de97a6ffa2f2747c76fbae597faadfe3eea2f61f80b01021b09dc7cf6f9469fffdd0f7ffb3bbffb7fdeecdf7ff40f1f670d7ffac3ac7e67e736bd40b33efdfdf004a0b93dbd09102040804049400028c16b4b80000102049a020240535f6f0204081020501210004af0da122040800081a68000d0d4d79b00010204089404048012bcb60408102040a029200034f5f5264080000102250101a004af2d0102040810680a08004d7dbd09102040804049400028c16b4b80000102049a020240535f6f0204081020501210004af0da122040800081a68000d0d4d79b00010204089404048012bcb60408102040a029200034f5f52640800001022581bd52df3b6b7b72741c5d2b7d9f72d45c31010291c0e1c1fee8f7b94787ff0a147ff7f12fa329fe60ffafa2fa5ffde01b51fdd3e7cfa2fab4f8affff647d125fefc4ffe38baff3d0188f815132040800081990202c0ccbd999a000102040844020240c4a7980001020408cc14100066eecdd4040810204020121000223ec5040810204060a6800030736fa626408000010291800010f12926408000010233050480997b3335010204081088040480884f31010204081098292000ccdc9ba9091020408040242000447c8a0910204080c04c010160e6de4c4d800001020422010120e2534c8000010204660a080033f7666a020408102010090800119f6202040810203053606fe6d8a6264080402eb0ffadaf4717b9f9ecf3a87e7af17fbdf8fbe808bffac137a2faef1d7c33aa5fbdd81380d5ef00e727408000812505048025d7eed004081020b0ba8000b0fa1de0fc04081020b0a48000b0e4da1d9a000102045617100056bf039c9f0001020496141000965cbb4313204080c0ea0202c0ea7780f313204080c0920202c0926b776802040810585d400058fd0e707e02040810585240005872ed0e4d80000102ab0b0800abdf01ce4f800001024b0a08004baedda1091020406075010160f53bc0f9091020406049010160c9b53b3401020408ac2e2000ac7e07383f010204082c29b07778b07f9b9cfce9f36749b95a0204161698feefcfe5f98fa3eddd7cf679549f167fefe09bd125fee3fabfa3fab4f8adb7df4d2f51adffb77ffda7a8ffc9d17154ef0940c4a7980001020408cc14100066eecdd4040810204020121000223ec5040810204060a6800030736fa626408000010291800010f12926408000010233050480997b3335010204081088040480884f31010204081098292000ccdc9ba9091020408040242000447c8a0910204080c04c010160e6de4c4d800001020422010120e2534c8000010204660a080033f7666a020408102010090800119f6202040810203053400098b9375313204080008148400088f8141320408000819902bbe9d8edf779a7ef43bebabe890d5243f504a60aa4dfff1ffedf6faa477fe7c547d5fe97e73f8efa9f3ef94554ff3ffff9eba83e2d7eebed77a34bbc7cf53aaa6f179f9f9e4523a4bf5f9e0044fc8a0910204080c04c010160e6de4c4d800001020422010120e2534c8000010204660a080033f7666a020408102010090800119f6202040810203053400098b9375313204080008148400088f814132040800081990202c0ccbd999a000102040844020240c4a7980001020408cc14100066eecdd4040810204020121000223ec5040810204060a6800030736fa626408000010291800010f12926408000010233050480997b3335010204081088040480884f3101020408109829b09b8e9dbe0ffce9f367e90851fdc9d171549f16a7ef734efba7fb4bfbab9f2d907e7f3f79fcde6880775e7c347afef6f02f5fbd8e46383f3d8beadbc5ed7fff3d0168df01fa1320408000818280005040d7920001020408b4050480f606f4274080000102050101a080ae250102040810680b0800ed0de84f80000102040a020240015d4b0204081020d0161000da1bd09f00010204081404048002ba960408102040a02d2000b437a03f01020408102808080005742d0910204080405b4000686f407f0204081020501010000ae85a122040800081b68000d0de80fe0408102040a020200014d0b52440800001026d0101a0bd01fd091020408040416037ed99be4ffec9e54534c2a3870fa2fab4f8e4e838bd44b53e7d9f7b7578cd9717f8e4f17ba30dde79f1d1e8f95fbe7a1dcd7f7e7a16d5a7c557d737f16f603a43b3de1380a6bede0408102040a024200094e0b52540800001024d0101a0a9af3701020408102809080025786d09102040804053400068eaeb4d80000102044a020240095e5b0204081020d01410009afa7a1320408000819280005082d796000102040834050480a6bede0408102040a024200094e0b52540800001024d0101a0a9af3701020408102809080025786d09102040804053400068eaeb4d80000102044a020240095e5b0204081020d01410009afa7a1320408000819240fd5dc88707fbb7c9d99f5c5e24e53b8f1e3e88ea1513203057e093c7efcd1dfe2b30f9c75ffbc3ea1457d737f5dfb02a40d8dc13801050390102040810982820004cdc9a990910204080402820008480ca0910204080c044010160e2d6cc4c80000102044201012004544e8000010204260a080013b766660204081020100a080021a07202040810203051400098b83533132040800081504000080195132040800081890202c0c4ad999900010204088402024008a89c00010204084c141000266ecdcc0408102040201410004240e5040810204060a2800030716b66264080000102a1800010022a2740800001021305f6260e6d66020408dc85c03b2f3e8a2ef3c9e3f7a2fab4f8cffef2f7d34b44f51f7f1a95ef5c5ddfec6657509d08780290e8a925408000010243050480a18b3336010204081048040480444f2d0102040810182a20000c5d9cb1091020408040222000247a6a0910204080c050010160e8e28c4d800001020412010120d1534b8000010204860a08004317676c020408102090080800899e5a02040810203054400018ba386313204080008144400048f4d4122040800081a10202c0d0c5199b000102040824020240a2a79600010204080c151000862eced8040810204020111000123db5040810204060a8c0f877311f1eecdf26f64f2e2f92f29d470f1f44f58a091020b0adc0ff3efbbb6d4befa4ee679f7e3dbaced5f5cdf8dfa008a05cec09407901da132040800081868000d050d793000102040894050480f202b42740800001020d0101a0a1ae270102040810280b0800e505684f80000102041a020240435d4f020408102050161000ca0bd09e00010204083404048086ba9e0408102040a02c20009417a03d0102040810680808000d753d091020408040594000282f407b0204081020d01010001aea7a122040800081b28000505e80f60408102040a021200034d4f5244080000102650101a0bc00ed0910204080404360afd1544f0204be1a022f5fbd8e06393f3d8bea9f3e7f16d5af5efc47c7ff1811a4fbdff934db7f34bce258c0138098d0050810204080c03c010160dece4c4c8000010204620101202674010204081020304f400098b7331313204080008158400088095d800001020408cc131000e6edccc4040810204020161000624217204080000102f3040480793b333101020408108805048098d0050810204080c03c010160dece4c4c8000010204620101202674010204081020304f400098b7331313204080008158400088095d800001020408cc131000e6edccc4040810204020161000624217204080000102f304f6e68d6c6202040810b80b81f3d3b3e83257d737bbd1051457053c01a8f26b4e80000102043a020240c75d57020408102050151000aafc9a1320408000818e8000d071d7950001020408540504802abfe60408102040a023200074dc75254080000102550101a0caaf390102040810e80808001d775d091020408040554000a8f26b4e80000102043a020240c75d57020408102050151000aafc9a1320408000818e8000d071d7950001020408540504802abfe60408102040a023200074dc75254080000102550101a0caaf390102040810e8082cff2ee7c383fddb84fec9e54552bef3e8e183a85e3181a6c0cb57afa3f6e9fbe89f3e7f16f5579c099c1c1d4717b8babe59fe3728020c8b3d01080195132040800081890202c0c4ad999900010204088402024008a89c00010204084c141000266ecdcc0408102040201410004240e5040810204060a2800030716b66264080000102a1800010022a27408000010213050480895b33330102040810080504801050390102040810982820004cdc9a990910204080402820008480ca0910204080c044010160e2d6cc4c80000102044201012004544e8000010204260a080013b766660204081020100a080021a07202040810203051c0bb98c3ad1d1eecdf26977872799194ef3c7af820aa9f5e9cbe8f7efaf9579ffffcf42c22f0fd8bf8764e8e8ea30b5c5ddff80d8a04b3624f00323fd5040810204060a4800030726d8626408000010299800090f9a926408000010223050480916b33340102040810c8040480cc4f350102040810182920008c5c9ba1091020408040262000647eaa0910204080c048010160e4da0c4d800001020432010120f3534d8000010204460a080023d76668020408102090090800999f6a02040810203052400018b936431320408000814c4000c8fc54132040800081910202c0c8b5199a000102040864020240e6a79a00010204088c14f02ee6706d8707fbb7e125a2f2d5df679ebe8f3cc257bcbcc0eadfbff40648bfbf57d7377ec38225780210e02925408000010253050480a99b3337010204081008040480004f290102040810982a20004cdd9cb909102040804020200004784a0910204080c054010160eae6cc4d800001020402010120c0534a8000010204a60a08005337676e020408102010080800019e5202040810203055400098ba397313204080008140400008f094122040800081a90202c0d4cd999b00010204080402024080a79400010204084c151000a66ecedc040810204020101000023ca5040810204060aac0ded4c1ef6aeec383fddbe45a673fff2029dfb978ffc3a85e7126e07de2995fbbbafdfd3d3f3d8b089e5c5e44f58f1e3e88ea15af2de009c0dafb777a02040810585440005874f18e4d800001026b0b08006befdfe9091020406051010160d1c53b3601020408ac2d2000acbd7fa72740800081450504804517efd804081020b0b68000b0f6fe9d9e0001020416151000165dbc6313204080c0da0202c0dafb777a02040810585440005874f18e4d800001026b0b08006befdfe9091020406051010160d1c53b3601020408ac2d2000acbd7fa72740800081450504804517efd804081020b0b68000b0f6fe9d9e000102041615d89d7eeef6fbc0db7e17ef7f188d30fd7de42747c7d1f9afae6fc67f07228072f1f4ef6ffafd4bf9a77f7fd3f3fbfe67829e00647eaa0910204080c048010160e4da0c4d800001020432010120f3534d8000010204460a080023d76668020408102090090800999f6a02040810203052400018b936431320408000814c4000c8fc54132040800081910202c0c8b5199a000102040864020240e6a79a00010204088c14100046aecdd0040810204020131000323fd5040810204060a4800030726d8626408000010299800090f9a926408000010223050480916b33340102040810c8040480cc4f3501020408101829b03772ea7b3474fa3ef1f87df6a767b709e7eaef234fecd412f0fd750f34053c0168eaeb4d80000102044a020240095e5b0204081020d01410009afa7a1320408000819280005082d796000102040834050480a6bede0408102040a024200094e0b52540800001024d0101a0a9af3701020408102809080025786d09102040804053400068eaeb4d80000102044a020240095e5b0204081020d01410009afa7a1320408000819280005082d796000102040834050480a6bede0408102040a024200094e0b52540800001024d0101a0a9af3701020408102809ec96fa7ed1f6f0603f7a1ffdd9cf3ff8e25a8d3f5cbcff61d4367e1f78d47d6727f57f7279114df0e8e183a83e2d3e393a8e2ed1de5f34fc1d14a7f78fefef1d2c21b844ba3fdfff9bfa6f68b0fe1d4f00123db5040810204060a88000307471c626408000010289800090e8a925408000010243050480a18b3336010204081048040480444f2d0102040810182a20000c5d9cb1091020408040222000247a6a0910204080c050010160e8e28c4d800001020412010120d1534b8000010204860a08004317676c020408102090080800899e5a02040810203054400018ba386313204080008144400048f4d4122040800081a10202c0d0c5199b000102040824020240a2a79600010204080c15d86bcf1dbf4ffdfd0f6f9b6788e76f0effdbdef1fca767917ffa3ef132dff2ede3fbc7f777e97be8e5abd74b9fbf7d784f00da1bd09f00010204081404048002ba960408102040a02d2000b437a03f01020408102808080005742d0910204080405b4000686f407f0204081020501010000ae85a122040800081b68000d0de80fe0408102040a020200014d0b52440800001026d0101a0bd01fd09102040804041400028a06b498000010204da0202407b03fa1320408000818280005040d7920001020408b4050480f606f4274080000102050101a080ae250102040810680b0800ed0de84f80000102040a02bb859e5a12f842e0f060fff68bbf14fe10bfcfbe30b39604be2a02edef6feab0faf7df1380f40e524f8000010204060a0800039766640204081020900a0800a9a07a02040810203050400018b834231320408000815440004805d5132040800081810202c0c0a519990001020408a40202402aa89e00010204080c141000062ecdc80408102040201510005241f5040810204060a0800030706946264080000102a98000900aaa27408000010203050480814b333201020408104805048054503d0102040810182820000c5c9a910910204080402a2000a482ea091020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204081020408000010204082c2cf0ff906147dc5f750b120000000049454e44ae426082"
+                            },
+                            {
+                                "name": "x",
+                                "value": "50"
+                            },
+                            {
+                                "name": "y",
+                                "value": "70"
+                            },
+                            {
+                                "name": "width",
+                                "value": "64"
+                            },
+                            {
+                                "name": "height",
+                                "value": "64"
+                            }
+                        ],
+                        "selectedAgentUuid": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "selectedService": "addImage"
+                    },
+                    "height": 224,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "a2c63a63-1cb2-4f14-bea0-0a7aaa8b1ade",
+                    "width": 350,
+                    "x": 1435.7641491387212,
+                    "y": -187.42518252242894,
+                    "z": 7.0299999999998946
+                },
+                {
+                    "data": {
+                        "synchronized_inputs": [
+                            "fake_input",
+                            "sync_input"
+                        ]
+                    },
+                    "height": 68,
+                    "isExpanded": true,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.synchro",
+                    "uuid": "7cc64658-ae78-40d6-ba27-fee9bff66eea",
+                    "width": 100,
+                    "x": 914.4174395389828,
+                    "y": 1580.3010086577008,
+                    "z": 7.459999999999885
+                }
+            ],
+            "links": {
+                "mappings": [
+                    {
+                        "from": "Joiner",
+                        "fromInput": "start",
+                        "to": "Host",
+                        "toOutput": "start"
+                    },
+                    {
+                        "from": "Joiner",
+                        "fromInput": "level_selected",
+                        "to": "Host",
+                        "toOutput": "level_selected"
+                    },
+                    {
+                        "from": "Joiner",
+                        "fromInput": "host_character",
+                        "to": "Host",
+                        "toOutput": "character"
+                    },
+                    {
+                        "from": "Host",
+                        "fromInput": "joiner_connected",
+                        "to": "Joiner",
+                        "toOutput": "is_connected"
+                    },
+                    {
+                        "from": "Host",
+                        "fromInput": "joiner_finished",
+                        "to": "Joiner",
+                        "toOutput": "has_finished"
+                    },
+                    {
+                        "from": "Joiner",
+                        "fromInput": "host_finished",
+                        "to": "Host",
+                        "toOutput": "has_finished"
+                    },
+                    {
+                        "from": "Whiteboard",
+                        "fromInput": "chatMessage",
+                        "to": "Host",
+                        "toOutput": "chat"
+                    },
+                    {
+                        "from": "Whiteboard",
+                        "fromInput": "chatMessage",
+                        "to": "Joiner",
+                        "toOutput": "chat"
+                    },
+                    {
+                        "from": "Whiteboard",
+                        "fromInput": "clear",
+                        "to": "Host",
+                        "toOutput": "reset"
+                    }
+                ],
+                "others": [
+                    {
+                        "destination": "ca602c02-3316-4a30-b059-fd12b2a1a943",
+                        "destinationIO": {
+                            "name": "_base64",
+                            "type": "INPUT"
+                        },
+                        "source": "c6c2449a-377c-4ac6-ab39-aa6080281904",
+                        "sourceIO": {
+                            "name": "image",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "ca602c02-3316-4a30-b059-fd12b2a1a943",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "5f2278f4-53b8-46dd-91c0-0a62ae6276dd",
+                        "sourceIO": {
+                            "name": "cat",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "0354f723-96ef-4cf2-9820-cf2ac0621645",
+                        "destinationIO": {
+                            "name": "_base64",
+                            "type": "INPUT"
+                        },
+                        "source": "63130145-db3f-4d8c-984e-ca5ef8dc5e7d",
+                        "sourceIO": {
+                            "name": "image",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "6892562c-0eed-4e82-a930-99e5646b9f19",
+                        "destinationIO": {
+                            "name": "_base64",
+                            "type": "INPUT"
+                        },
+                        "source": "c6c2449a-377c-4ac6-ab39-aa6080281904",
+                        "sourceIO": {
+                            "name": "image",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "0354f723-96ef-4cf2-9820-cf2ac0621645",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "3c4228e4-98b8-424b-b1fa-b0cb4eb6f3a1",
+                        "sourceIO": {
+                            "name": "dog",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "103b8781-45d5-4276-9201-d15943a2178a",
+                        "destinationIO": {
+                            "name": "title",
+                            "type": "INPUT"
+                        },
+                        "source": "53dd1439-416e-45f8-8cc6-114737196ada",
+                        "sourceIO": {
+                            "name": "value",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "6892562c-0eed-4e82-a930-99e5646b9f19",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "3c4228e4-98b8-424b-b1fa-b0cb4eb6f3a1",
+                        "sourceIO": {
+                            "name": "cat",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "3d0723d5-1a5f-4513-8400-1f108c807b7a",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "start",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "3d0723d5-1a5f-4513-8400-1f108c807b7a",
+                        "destinationIO": {
+                            "name": "_text",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "player_name",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "a4519c64-c222-4d38-afc3-504a4c11e7bc",
+                        "destinationIO": {
+                            "name": "_text",
+                            "type": "INPUT"
+                        },
+                        "source": "ec31dbb5-b699-4913-abb2-40469d75b43e",
+                        "sourceIO": {
+                            "name": "player_name",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "5f2278f4-53b8-46dd-91c0-0a62ae6276dd",
+                        "destinationIO": {
+                            "name": "branch",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "character",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "3c4228e4-98b8-424b-b1fa-b0cb4eb6f3a1",
+                        "destinationIO": {
+                            "name": "branch",
+                            "type": "INPUT"
+                        },
+                        "source": "ec31dbb5-b699-4913-abb2-40469d75b43e",
+                        "sourceIO": {
+                            "name": "character",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "8e6d9c93-f4b0-491f-bfc4-aaefe2df8cf5",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "spawn_enemi",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "86ea2cc9-d6a6-4af5-87af-a2c1b316ddc8",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "spawn_poison",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "e2ca5b5a-fea0-4dc6-accf-b2d476824b4b",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "spawn_treat",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "fc75d2ea-30de-4816-8e97-453473273da0",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "start",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "296c2846-a6fc-413a-a48c-f2d7b9a81a8a",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "9eb1a9c1-16a6-44b9-8e54-b77085205e0e",
+                        "sourceIO": {
+                            "name": "value",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "73c6a87a-8c3e-4966-a4f5-f08f88b8870f",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "9eb1a9c1-16a6-44b9-8e54-b77085205e0e",
+                        "sourceIO": {
+                            "name": "value",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "73c6a87a-8c3e-4966-a4f5-f08f88b8870f",
+                        "destinationIO": {
+                            "name": "_height",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "treat_recolted",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "bbe5798e-bb4c-4cd9-a5d4-d503557e17cb",
+                        "destinationIO": {
+                            "name": "_height",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "treat_recolted",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "1b930663-4135-4e28-bb72-f6757cca51d4",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "9eb1a9c1-16a6-44b9-8e54-b77085205e0e",
+                        "sourceIO": {
+                            "name": "value",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "321c783a-033c-417f-8c56-c052fb6d843e",
+                        "destinationIO": {
+                            "name": "_text",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "treat_text",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "8c2636e2-0497-45a1-a3de-93bfcc85b07c",
+                        "destinationIO": {
+                            "name": "branch",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "game_mode",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "8c2636e2-0497-45a1-a3de-93bfcc85b07c",
+                        "destinationIO": {
+                            "name": "spreading",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "start",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "3c4228e4-98b8-424b-b1fa-b0cb4eb6f3a1",
+                        "destinationIO": {
+                            "name": "spreading",
+                            "type": "INPUT"
+                        },
+                        "source": "8c2636e2-0497-45a1-a3de-93bfcc85b07c",
+                        "sourceIO": {
+                            "name": "multi",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "5f2278f4-53b8-46dd-91c0-0a62ae6276dd",
+                        "destinationIO": {
+                            "name": "spreading",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "start",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "a4519c64-c222-4d38-afc3-504a4c11e7bc",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "8c2636e2-0497-45a1-a3de-93bfcc85b07c",
+                        "sourceIO": {
+                            "name": "multi",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "1b930663-4135-4e28-bb72-f6757cca51d4",
+                        "destinationIO": {
+                            "name": "_text",
+                            "type": "INPUT"
+                        },
+                        "source": "ec31dbb5-b699-4913-abb2-40469d75b43e",
+                        "sourceIO": {
+                            "name": "treat_text",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "53dd1439-416e-45f8-8cc6-114737196ada",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "start",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "ae24504a-9c41-4b09-8da2-e72d8668d52a",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "bb01908d-6288-4cf9-a04c-eb0b6a03d9eb",
+                        "sourceIO": {
+                            "name": "value",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "bbe5798e-bb4c-4cd9-a5d4-d503557e17cb",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "bb01908d-6288-4cf9-a04c-eb0b6a03d9eb",
+                        "sourceIO": {
+                            "name": "value",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "321c783a-033c-417f-8c56-c052fb6d843e",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "bb01908d-6288-4cf9-a04c-eb0b6a03d9eb",
+                        "sourceIO": {
+                            "name": "value",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "bb01908d-6288-4cf9-a04c-eb0b6a03d9eb",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "has_finished",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "a2c63a63-1cb2-4f14-bea0-0a7aaa8b1ade",
+                        "destinationIO": {
+                            "name": "_base64",
+                            "type": "INPUT"
+                        },
+                        "source": "63130145-db3f-4d8c-984e-ca5ef8dc5e7d",
+                        "sourceIO": {
+                            "name": "image",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "a2c63a63-1cb2-4f14-bea0-0a7aaa8b1ade",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "5f2278f4-53b8-46dd-91c0-0a62ae6276dd",
+                        "sourceIO": {
+                            "name": "dog",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "9eb1a9c1-16a6-44b9-8e54-b77085205e0e",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "7cc64658-ae78-40d6-ba27-fee9bff66eea",
+                        "sourceIO": {
+                            "name": "sync_output",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "7cc64658-ae78-40d6-ba27-fee9bff66eea",
+                        "destinationIO": {
+                            "name": "sync_input",
+                            "type": "INPUT"
+                        },
+                        "source": "6da44dd5-c513-4021-82cf-90f3200698f6",
+                        "sourceIO": {
+                            "name": "sync_output",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "6da44dd5-c513-4021-82cf-90f3200698f6",
+                        "destinationIO": {
+                            "name": "sync_input",
+                            "type": "INPUT"
+                        },
+                        "source": "bdba3339-bb40-40b7-9425-9677f3373525",
+                        "sourceIO": {
+                            "name": "has_finished",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "7cc64658-ae78-40d6-ba27-fee9bff66eea",
+                        "destinationIO": {
+                            "name": "fake_input",
+                            "type": "INPUT"
+                        },
+                        "source": "ec31dbb5-b699-4913-abb2-40469d75b43e",
+                        "sourceIO": {
+                            "name": "has_finished",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "6da44dd5-c513-4021-82cf-90f3200698f6",
+                        "destinationIO": {
+                            "name": "fake_input",
+                            "type": "INPUT"
+                        },
+                        "source": "8c2636e2-0497-45a1-a3de-93bfcc85b07c",
+                        "sourceIO": {
+                            "name": "multi",
+                            "type": "OUTPUT"
+                        }
+                    }
+                ]
+            },
+            "name": "Main view"
+        }
+    ]
+}

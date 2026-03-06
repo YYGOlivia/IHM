@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paws of Fury: Rainy City</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-wrapper">
+        <div id="loading-screen">
+    <canvas id="dog-canvas" width="800" height="400"></canvas>
+
+    <div class="progress-container" id="p-cont">
+        <div id="progress-bar" class="progress-bar"></div>
+    </div>
+
+    <div id="loading-text" class="loading-text">LOADING... 0%</div>
+    </div>
+
+    <div id="screen-home" class="ui-layer">
+        <h1>Paws of Fury</h1>
+        <h2 style="color: #ddd; letter-spacing: 2px;">Run Free, Wherever You Are</h2>
+        <button onclick="toName()">START GAME</button>
+        <button class="btn-back" onclick="alert('Controls:\nArrows: Move & Jump\nSpace: Attack!')">TUTORIAL</button>
+    </div>
+
+    <div id="screen-name" class="ui-layer hidden">
+        <h2>ENTER YOUR NAME</h2>
+        <input type="text" id="username" placeholder="Type your name..." value='' onkeydown="if(event.key==='Enter')handleName()">
+        <button onclick="handleName()">NEXT</button>
+        <button class="btn-back" onclick="backToHome()">BACK</button>
+    </div>
+
+    <div id="screen-mode" class="ui-layer hidden">
+        <h2>SELECT GAME MODE</h2>
+        <div class="char-container">
+            <div id="m-single" class="char-box selected" onclick="pickMode('single')">
+                <span class="emoji-icon">👤</span>
+                <div>Single Player</div>
+            </div>
+            <div id="m-multi" class="char-box" onclick="pickMode('multi')">
+                <span class="emoji-icon">👥</span>
+                <div>Multi Player</div>
+            </div>
+        </div>
+        <button onclick="confirmMode()">NEXT</button>
+        <button class="btn-back" onclick="backToName()">BACK</button>
+    </div>
+
+    <div id="screen-multi-menu" class="ui-layer hidden">
+        <h2>MULTIPLAYER</h2>
+        <button onclick="goToJoiner()">JOIN ROOM</button>
+        <button onclick="goToHost()">CREATE ROOM</button>
+        <button class="btn-back" onclick="backToMode()">BACK</button>
+    </div>
+</div>
+
+<script>
+    let params = new URLSearchParams(document.location.search);
+    let data = { 
+        state: params.get('state') == null ? 'HOME' : params.get('state'), 
+        name: params.get('name') == null ? '' : params.get('name'), 
+        mode: 'single'
+    };
+
+    window.addEventListener('load', () => {
+        if (data.state === 'MODE') {
+            toModeSelect(); 
+            loadingScreen.style.display = 'none'; 
+        } else {
+            requestAnimationFrame(loadingLoop);
+        }
+    });
+        
+    // loading
+    const loadingScreen = document.getElementById('loading-screen');
+    const loadCanvas = document.getElementById('dog-canvas');
+    const loadCtx = loadCanvas.getContext('2d');
+    const progressBar = document.getElementById('progress-bar');
+    const loadingText = document.getElementById('loading-text');
+
+    // ---- Dog animation config
+    const runnerImg = new Image();
+    runnerImg.src = 'Dog-4-Run.png';
+    const totalFrames = 8;
+    const cols = 8;
+    let frameIndex = 0;
+    let tick = 0;
+    const ticksPerFrame = 8;
+
+    // ---- Loading state
+    const loading = {
+        startTime: 0,
+        display: 0,
+        minDuration: 1700, // temps mini du loading
+        barDuration: 1500  // durée anim de la barre
+    };
+
+    // ---- Draw Dog
+    function drawDog() {
+        loadCtx.clearRect(0, 0, loadCanvas.width, loadCanvas.height);
+
+        tick++;
+        if (tick > ticksPerFrame) {
+            tick = 0;
+            frameIndex = (frameIndex + 1) % totalFrames;
+        }
+
+        if (runnerImg.complete && runnerImg.naturalWidth > 0) {
+            const frameW = runnerImg.width / cols;
+            const frameH = runnerImg.height;
+
+            loadCtx.drawImage(
+                runnerImg,
+                frameIndex * frameW, 0, frameW, frameH,
+                400 - 64, 120, 128, 128
+            );
+        }
+    }
+
+    // ---- Main loop
+    function loadingLoop(timestamp) {
+        if (!loading.startTime) loading.startTime = timestamp;
+
+        const elapsed = timestamp - loading.startTime;
+
+        // Dog
+        drawDog();
+
+        // Progress (100% basé sur le temps)
+        const target = Math.min(100, (elapsed / loading.barDuration) * 100);
+        loading.display += (target - loading.display) * 0.12;
+
+        progressBar.style.width = loading.display + '%';
+        loadingText.textContent = `LOADING... ${Math.round(loading.display)}%`;
+
+        // Fin
+        if (elapsed >= loading.minDuration && loading.display >= 99.5) {
+            finishLoading();
+            return;
+        }
+
+        requestAnimationFrame(loadingLoop);
+    }
+
+    // ---- Finish
+    function finishLoading() {
+        loadingScreen.style.transition = 'opacity 0.5s';
+        loadingScreen.style.opacity = '0';
+
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 520);
+    }
+
+    // ---- Start
+    requestAnimationFrame(loadingLoop);
+
+    // --- INPUT HANDLING ---
+    window.addEventListener('keyup', e => {
+        // Prevent scrolling
+        if(['Space','ArrowUp','ArrowDown'].includes(e.code)) e.preventDefault();
+
+        if (state === 'MODE') {
+            if (e.code === 'ArrowLeft') pickMode('singke');
+            if (e.code === 'ArrowRight') pickMode('multi');
+        }
+
+        if (e.code === 'Space' || e.code === 'Enter') {
+            if (data.state === 'NAME') handleName();
+            else if (data.state === 'MODE') confirmMode();
+    }
+    });
+
+    //logic
+    function handleName(){
+        data.name = document.getElementById('username').value;
+        console.log(data);
+        toModeSelect();
+    }
+
+    // --- NAVIGATION FUNCTIONS ---
+
+    function showScreen(id) {
+        document.querySelectorAll('.ui-layer').forEach(el => {
+            if(el.id !== 'loading-screen') el.classList.add('hidden');
+        });
+        document.getElementById(id).classList.remove('hidden');
+    }
+
+    function backToHome() { data.state = 'HOME'; showScreen('screen-home'); }
+    
+    function toName() { data.state = 'NAME'; showScreen('screen-name'); document.getElementById('username').focus(); }
+    function backToName() { data.state = 'NAME'; showScreen('screen-name'); }
+    
+    function toModeSelect() { data.state = 'MODE'; showScreen('screen-mode'); }
+    function backToMode() { data.state = 'MODE'; showScreen('screen-mode'); }
+
+    function confirmMode() {
+        if (data.mode === 'single') {
+            goToSingle();
+        } else {
+            data.state = 'MULTI_MENU';
+            showScreen('screen-multi-menu');
+        }
+    }
+
+    function pickMode(mode) {
+        data.mode = mode;
+        document.getElementById('m-single').className = mode==='single'?'char-box selected':'char-box';
+        document.getElementById('m-multi').className = mode==='multi'?'char-box selected':'char-box';
+    }
+
+    function goToSingle() {
+        data.state = 'CHAR';
+        let url = "Host/index.html?" + new URLSearchParams(data).toString();
+        window.location.href = url;
+    }
+  
+    function goToHost() {
+        data.state = 'CREATE';
+        let url = "Host/index.html?" + new URLSearchParams(data).toString();
+        console.log(url);
+        window.location.href = url;
+    }
+    
+    function goToJoiner() {
+        data.state = 'JOIN';
+        let url = "Joiner/index.html?" + new URLSearchParams(data).toString();
+        console.log(url);
+        window.location.href = url;
+    }
+
+</script>
+</body>
+</html>
